@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tamanho_quiz">30.sp</dimen>
+    <dimen name="tamanho_button">18.sp</dimen>
+
+</resources>

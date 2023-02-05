@@ -12,22 +12,22 @@
         android:theme="@style/Theme.TeoreMus"
         tools:targetApi="31">
         <activity
-            android:name=".view.ModuloI"
+            android:name=".view.moduloi.ModuloI"
             android:exported="false"
             android:label="@string/title_activity_modulo_i"
             android:theme="@style/Theme.TeoreMus" />
         <activity
-            android:name=".view.ModuloII"
+            android:name=".view.moduloii.ModuloII"
             android:exported="false"
             android:label="@string/title_activity_modulo_i"
             android:theme="@style/Theme.TeoreMus" />
         <activity
-            android:name=".view.ModuloIII"
+            android:name=".view.moduloiii.ModuloIII"
             android:exported="false"
             android:label="@string/title_activity_modulo_i"
             android:theme="@style/Theme.TeoreMus" />
         <activity
-            android:name=".view.ModuloIV"
+            android:name=".view.moduloiv.ModuloIV"
             android:exported="false"
             android:label="@string/title_activity_modulo_i"
             android:theme="@style/Theme.TeoreMus" />

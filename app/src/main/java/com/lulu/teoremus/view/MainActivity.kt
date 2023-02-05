@@ -20,6 +20,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
+import com.lulu.teoremus.view.moduloi.ModuloI
+import com.lulu.teoremus.view.moduloii.ModuloII
+import com.lulu.teoremus.view.moduloiii.ModuloIII
+import com.lulu.teoremus.view.moduloiv.ModuloIV
 
 
 var listaImagens = listOf<Int>(R.drawable.img_semibreve, R.drawable.img_minima, R.drawable.img_seminima, R.drawable.img_colcheia)
