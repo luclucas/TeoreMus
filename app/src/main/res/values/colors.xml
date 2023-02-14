@@ -10,4 +10,6 @@
     <color name="card_tela_principal">#793D00</color>
     <color name="cor_botoes_modulo">#FF0C1F66</color>
     <color name="cor_texto">#FF000000</color>
+    <color name="texto_botao_mod">#FFFFFFFF</color>
+    <color name="texto_botao_quiz">#FFFFFF00</color>
 </resources>

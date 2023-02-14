@@ -1,4 +1,4 @@
-package com.lulu.teoremus.view.ui.theme
+package com.lulu.teoremus.view.moduloi.inicio.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">TeoreMus</string>
     <string name="title_activity_modulo_i">ModuloI</string>
+    <string name="title_activity_inicio_i">InicioI</string>
+
+    <!-- Modulo 1 - Inicio    -->
+    <string name="inicio1">A música se dá pela combinação ordenada de sons.\n\nSuas principais características são: <b>melodia, harmonia e ritmo.</b></string>
+
+    <string name="inicio_melodia">A melodia é um conjunto de sons dispostos em ordem sucessiva. Geralmente é aquilo que pode ser cantado.</string>
 </resources>

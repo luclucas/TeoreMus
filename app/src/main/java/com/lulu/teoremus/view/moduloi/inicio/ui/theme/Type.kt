@@ -1,16 +1,29 @@
-package com.lulu.teoremus.view.ui.theme
+package com.lulu.teoremus.view.moduloi.inicio.ui.theme
 
 import androidx.compose.material.Typography
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.lulu.teoremus.R
 
+val lilita = FontFamily(
+    Font(R.font.lilita_one_regular)
+)
+val heebo = FontFamily(
+    Font(R.font.heebo_medium)
+)
 // Set of Material typography styles to start with
 val Typography = Typography(
+    h1 = TextStyle(
+        fontFamily = lilita,
+        fontSize = 20.sp,
+        color = Color.Blue
+    ),
     body1 = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
+        fontFamily = heebo,
         fontSize = 16.sp
     )
     /* Other default text styles to override

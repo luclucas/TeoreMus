@@ -12,6 +12,11 @@
         android:theme="@style/Theme.TeoreMus"
         tools:targetApi="31">
         <activity
+            android:name=".view.moduloi.inicio.InicioI"
+            android:exported="false"
+            android:label="@string/title_activity_inicio_i"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
             android:name=".view.moduloi.ModuloI"
             android:exported="false"
             android:label="@string/title_activity_modulo_i"
@@ -31,8 +36,6 @@
             android:exported="false"
             android:label="@string/title_activity_modulo_i"
             android:theme="@style/Theme.TeoreMus" />
-
-
         <activity
             android:name=".view.MainActivity"
             android:exported="true"
