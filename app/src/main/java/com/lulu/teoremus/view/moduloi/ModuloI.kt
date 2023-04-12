@@ -17,13 +17,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
 import com.lulu.teoremus.view.moduloi.inicio.InicioI
+import com.lulu.teoremus.view.moduloi.notas.NotasActivity
+import com.lulu.teoremus.view.moduloi.pauta.Pauta
+import com.lulu.teoremus.view.moduloi.qualidades.QualidadesDoSom
 
 val listaNomes = listOf(
-    "Início", "Notas", "Pauta", "Clave de Sol",
-    "Clave de Fá", "Durações"
+    "Início", "O Som", "Notas", "Pauta", "Clave de Sol",
+    "Clave de Fá",
+    //"Durações"
 )
 
-
+val listaActivity = listOf(
+    InicioI::class.java,
+    QualidadesDoSom::class.java,
+    NotasActivity::class.java,
+)
 
 class ModuloI : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,46 +43,57 @@ class ModuloI : ComponentActivity() {
 }
 
 @Composable
-private fun CriarBotoes(){
-        Column(
-            Modifier
-                .padding(20.dp)
-                .fillMaxSize(), verticalArrangement = Arrangement.Top, horizontalAlignment = Alignment.CenterHorizontally) {
-            for(i in listaNomes.indices step 2){
-                var isRow = true
-                if (isRow) {
-                    Row() {
-                        BotoesAula(nome = listaNomes[i])
-                        BotoesAula(nome = listaNomes[i + 1])
-                        isRow = false
-                    }
+private fun CriarBotoes() {
+    Column(
+        Modifier
+            .padding(20.dp)
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        for (i in listaNomes.indices step 2) {
+            var isRow = true
+            if (isRow) {
+                Row() {
+                    BotoesAula(nome = listaNomes[i], i)
+                    BotoesAula(nome = listaNomes[i + 1], i)
+                    isRow = false
                 }
+            }
         }
-            BotaoQuiz()
+        BotaoQuiz()
     }
 }
 
 @Composable
-private fun BotoesAula(nome: String) {
+private fun BotoesAula(nome: String, i: Int) {
     val context = LocalContext.current
-    Button(onClick = {
-        context.startActivity(Intent(context, InicioI::class.java))
-    },
+    Button(
+        onClick = {
+            if (i % 2 == 0) {
+                context.startActivity(Intent(context,Pauta::class.java))
+            } else {
+                context.startActivity(Intent(context, InicioI::class.java))
+            }
+        },
         Modifier
             .padding(10.dp)
-            .size(130.dp)
-            , colors = ButtonDefaults.buttonColors(colorResource(id = R.color.cor_botoes_modulo))) {
+            .size(130.dp),
+        colors = ButtonDefaults.buttonColors(colorResource(id = R.color.cor_botoes_modulo))
+    ) {
         Text(text = nome, fontSize = 18.sp, color = colorResource(id = R.color.texto_botao_mod))
     }
 }
 
 @Composable
 private fun BotaoQuiz() {
-    Button(onClick = {}, modifier = Modifier
-        .height(120.dp)
-        .fillMaxWidth()
-        .padding(20.dp),
-    colors = ButtonDefaults.buttonColors(colorResource(id = R.color.card_tela_principal))) {
+    Button(
+        onClick = {}, modifier = Modifier
+            .height(120.dp)
+            .fillMaxWidth()
+            .padding(20.dp),
+        colors = ButtonDefaults.buttonColors(colorResource(id = R.color.card_tela_principal))
+    ) {
         Text(text = "Quiz", fontSize = 30.sp, color = colorResource(id = R.color.texto_botao_quiz))
     }
 }

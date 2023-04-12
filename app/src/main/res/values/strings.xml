@@ -7,4 +7,7 @@
     <string name="inicio1">A música se dá pela combinação ordenada de sons.\n\nSuas principais características são: <b>melodia, harmonia e ritmo.</b></string>
 
     <string name="inicio_melodia">A melodia é um conjunto de sons dispostos em ordem sucessiva. Geralmente é aquilo que pode ser cantado.</string>
+    <string name="title_activity_notas">NotasActivity</string>
+    <string name="title_activity_qualidades_do_som">QualidadesDoSom</string>
+    <string name="title_activity_pauta">Pauta</string>
 </resources>

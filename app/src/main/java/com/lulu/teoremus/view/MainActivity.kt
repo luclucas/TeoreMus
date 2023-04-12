@@ -26,11 +26,17 @@ import com.lulu.teoremus.view.moduloiii.ModuloIII
 import com.lulu.teoremus.view.moduloiv.ModuloIV
 
 
-var listaImagens = listOf<Int>(R.drawable.img_semibreve, R.drawable.img_minima, R.drawable.img_seminima, R.drawable.img_colcheia)
+var listaImagens = listOf<Int>(
+    R.drawable.img_semibreve,
+    R.drawable.img_minima,
+    R.drawable.img_seminima,
+    R.drawable.img_colcheia
+)
 
-var listaNomes = listOf("Módulo I", "Módulo II","Módulo III","Módulo IV",)
+var listaNomes = listOf("Módulo I", "Módulo II", "Módulo III", "Módulo IV")
 
-val listaTelas = listOf(ModuloI::class.java, ModuloII::class.java, ModuloIII::class.java, ModuloIV::class.java)
+val listaTelas =
+    listOf(ModuloI::class.java, ModuloII::class.java, ModuloIII::class.java, ModuloIV::class.java)
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +51,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Tela() {
     Column() {
-        for(i in listaNomes.indices){
+        for (i in listaNomes.indices) {
             CardModulo(imagem = listaImagens[i], titulo = listaNomes[i], listaTelas[i])
         }
 
@@ -53,22 +59,28 @@ fun Tela() {
 }
 
 @Composable
-fun CardModulo(imagem: Int, titulo: String, tela: Class<out ComponentActivity>){
+fun CardModulo(imagem: Int, titulo: String, tela: Class<out ComponentActivity>) {
     val context = LocalContext.current
     Card(
         Modifier
             .padding(top = 20.dp, start = 20.dp, end = 20.dp)
             .fillMaxWidth()
             .clickable {
-                       context.startActivity(Intent(context, tela))
-            }
-         , backgroundColor = colorResource(id = R.color.card_tela_principal)) {
+                context.startActivity(Intent(context, tela))
+            }, backgroundColor = colorResource(id = R.color.card_tela_principal)) {
 
         Row(modifier = Modifier.padding(10.dp), verticalAlignment = Alignment.CenterVertically) {
 
-            Image( painter = painterResource(id =  imagem), contentDescription = "Imagem módulo", Modifier.size(80.dp))
+            Image(
+                painter = painterResource(id = imagem),
+                contentDescription = "Imagem módulo",
+                Modifier.size(80.dp)
+            )
 
-            Column (modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally){
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
 
                 Text(text = titulo, color = Color.Yellow, fontSize = 30.sp)
                 Text(text = "Descrição do módulo", color = Color.White, fontSize = 20.sp)

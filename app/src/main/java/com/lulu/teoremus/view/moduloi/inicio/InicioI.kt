@@ -1,6 +1,7 @@
 package com.lulu.teoremus.view.moduloi.inicio
 
-import android.content.Context
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,19 +10,21 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
 import com.lulu.teoremus.enums.Escolhas
-import com.lulu.teoremus.model.*
-
-val midia = Midia()
+import com.lulu.teoremus.ferramentas.*
+import com.lulu.teoremus.view.moduloi.ModuloI
 
 
 class InicioI : ComponentActivity() {
@@ -37,14 +40,16 @@ class InicioI : ComponentActivity() {
 
 @Composable
 private fun Tela() {
+    val midia = Midias()
     val context = LocalContext.current
     Column(
         modifier = Modifier
             .padding(20.dp)
             .fillMaxSize()
             .verticalScroll(rememberScrollState()),
-        horizontalAlignment = Alignment.CenterHorizontally)
-     {
+        horizontalAlignment = Alignment.CenterHorizontally
+    )
+    {
         Titulo(titulo = "Início")
         Texto(texto = stringResource(id = R.string.inicio1))
         Subtitulo(titulo = "Melodia")
@@ -66,11 +71,41 @@ private fun Tela() {
         BotaoAudio(
             texto = "Toque-me",
             midia,
-            escolha = Escolhas.MELODIA_LA_VIE,
+            Escolhas.MELODIA_LA_VIE,
             context
         )
 
-         CaixaDesafio("Preste mais atenção nas melodias das músicas que você ouve. Quais as diferenças entre elas?")
+        CaixaDesafio("Preste mais atenção nas melodias das músicas que você ouve. Quais as diferenças entre elas? ")
+
+        Subtitulo(titulo = "Harmonia")
+
+        Texto(texto = "A harmonia se dá quando há duas ou mais notas tocadas ao mesmo tempo, por exemplo, um acorde")
+
+        Texto(texto = "Tocando no botão abaixo, você ouvirá o acorde de Dó maior")
+
+        BotaoAudio(
+            texto = "Toque-me",
+            midia,
+            Escolhas.C_VIOLAO,
+            context
+        )
+
+        CaixaDesafio(texto = "Quando escutar uma música, preste atenção nos diferentes instrumentos que estão tocando e em como estão harmonizados")
+
+        Subtitulo(titulo = "Ritmo")
+
+        Texto(texto = "O ritmo se dá pela ordem e duração em que estão dispostos os sons e pausas, servindo como marcação")
+
+        Button(onClick = {
+            val activity = (context as? Activity)
+            val i = Intent(context, ModuloI::class.java)
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            activity?.startActivity(i)
+            activity?.finish()
+
+        }, Modifier.padding(30.dp), colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)) {
+            Text(text = "Finalizar", color = Color.White, fontSize = 20.sp)
+        }
     }
 
 }
