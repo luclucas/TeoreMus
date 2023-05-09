@@ -10,4 +10,13 @@
     <string name="title_activity_notas">NotasActivity</string>
     <string name="title_activity_qualidades_do_som">QualidadesDoSom</string>
     <string name="title_activity_pauta">Pauta</string>
+    <string name="title_activity_clave_sol">ClaveSol</string>
+    <string name="title_activity_clave_sol_exercicio">ClaveSolExercicio</string>
+    <string name="title_activity_tom">Tom</string>
+    <string name="title_activity_itervalos">Itervalos</string>
+    <string name="title_activity_escalas">Escalas</string>
+    <string name="title_activity_escala_menor">EscalaMenor</string>
+    <string name="title_activity_escala_maior">EscalaMaior</string>
+    <string name="title_activity_intervalos2">Intervalos2</string>
+    <string name="title_activity_intervalos3">Intervalos3</string>
 </resources>

@@ -13,24 +13,31 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
+import com.lulu.teoremus.view.moduloi.clave_sol.ClaveSol
 import com.lulu.teoremus.view.moduloi.inicio.InicioI
 import com.lulu.teoremus.view.moduloi.notas.NotasActivity
 import com.lulu.teoremus.view.moduloi.pauta.Pauta
 import com.lulu.teoremus.view.moduloi.qualidades.QualidadesDoSom
+import com.lulu.teoremus.view.moduloi.tom.Tom
 
 val listaNomes = listOf(
     "Início", "O Som", "Notas", "Pauta", "Clave de Sol",
-    "Clave de Fá",
+    "Semitom e tom",
     //"Durações"
 )
+
 
 val listaActivity = listOf(
     InicioI::class.java,
     QualidadesDoSom::class.java,
     NotasActivity::class.java,
+    Pauta::class.java,
+    ClaveSol::class.java,
+    Tom::class.java
 )
 
 class ModuloI : ComponentActivity() {
@@ -56,7 +63,7 @@ private fun CriarBotoes() {
             if (isRow) {
                 Row() {
                     BotoesAula(nome = listaNomes[i], i)
-                    BotoesAula(nome = listaNomes[i + 1], i)
+                    BotoesAula(nome = listaNomes[i + 1], i + 1)
                     isRow = false
                 }
             }
@@ -70,18 +77,15 @@ private fun BotoesAula(nome: String, i: Int) {
     val context = LocalContext.current
     Button(
         onClick = {
-            if (i % 2 == 0) {
-                context.startActivity(Intent(context,Pauta::class.java))
-            } else {
-                context.startActivity(Intent(context, InicioI::class.java))
-            }
+                context.startActivity(Intent(context, listaActivity[i]))
+
         },
         Modifier
             .padding(10.dp)
             .size(130.dp),
         colors = ButtonDefaults.buttonColors(colorResource(id = R.color.cor_botoes_modulo))
     ) {
-        Text(text = nome, fontSize = 18.sp, color = colorResource(id = R.color.texto_botao_mod))
+        Text(text = nome, fontSize = 18.sp, color = colorResource(id = R.color.texto_botao_mod), textAlign = TextAlign.Center)
     }
 }
 

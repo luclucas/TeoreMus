@@ -230,3 +230,69 @@ fun CaixaParaOuvir(texto: String, midia: Midias, escolha: Escolhas, context: Con
         }
     }
 }
+
+@Composable
+fun CaixaResposta(texto: String) {
+    val expandido = remember {
+        mutableStateOf(false)
+    }
+    val icone =
+        if (!expandido.value) Icons.Default.KeyboardArrowDown else Icons.Default.KeyboardArrowUp
+    val extraPadding = if (expandido.value) 20.dp else 0.dp
+    Box(
+        modifier = Modifier
+            .padding(20.dp)
+            .fillMaxWidth()
+            .background(
+                color = colorResource(id = R.color.card_tela_principal),
+                shape = RoundedCornerShape(10.dp)
+            )
+
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 20.dp, bottom = 20.dp + extraPadding),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Row {
+                Text(
+                    text = "Resposta",
+                    fontSize = 25.sp,
+                    color = colorResource(id = R.color.texto_botao_quiz),
+                    style = Typography.body1
+                )
+
+                Icon(
+                    icone, "Icone",
+                    Modifier
+                        .padding(top = 5.dp, start = 60.dp)
+                        .size(30.dp)
+                        .background(
+                            color = Color.White,
+                            shape = CircleShape
+                        )
+                        .clickable { expandido.value = !expandido.value },
+                    tint = colorResource(id = R.color.card_tela_principal)
+                )
+
+            }
+            if (expandido.value) {
+                Text(
+                    text = texto,
+                    Modifier
+                        .padding(top = 20.dp, start = 20.dp, end = 20.dp)
+                        .background(color = Color.White, shape = RoundedCornerShape(10.dp))
+                        .padding(10.dp)
+                        .fillMaxWidth(),
+
+                    color = colorResource(id = R.color.black)
+                    ,
+                    fontSize = 20.sp,
+                    style = Typography.body1,
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+    }
+}

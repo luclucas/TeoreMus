@@ -12,49 +12,105 @@
         android:theme="@style/Theme.TeoreMus"
         tools:targetApi="31">
         <activity
+            android:name=".view.moduloii.intervalos.Intervalos3"
+            android:exported="false"
+            android:label="@string/title_activity_intervalos3"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
+            android:name=".view.moduloii.intervalos.Intervalos2"
+            android:exported="false"
+            android:label="@string/title_activity_intervalos2"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
+            android:name=".view.moduloii.escala_maior.EscalaMaior"
+            android:exported="false"
+            android:label="@string/title_activity_escala_maior"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
+            android:name=".view.moduloii.escala_menor.EscalaMenor"
+            android:exported="false"
+            android:label="@string/title_activity_escala_menor"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
+            android:name=".view.moduloii.escalas.Escalas"
+            android:exported="false"
+            android:label="@string/title_activity_escalas"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
+            android:name=".view.moduloii.intervalos.Intervalos"
+            android:exported="false"
+            android:label="@string/title_activity_itervalos"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
+            android:name=".view.moduloi.tom.Tom"
+            android:exported="false"
+            android:label="@string/title_activity_tom"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
+            android:name=".view.moduloi.clave_sol.ClaveSolExercicio"
+            android:exported="false"
+            android:label="@string/title_activity_clave_sol_exercicio"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
+            android:name=".view.moduloi.clave_sol.ClaveSol"
+            android:exported="false"
+            android:label="@string/title_activity_clave_sol"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
             android:name=".view.moduloi.pauta.Pauta"
             android:exported="false"
             android:label="@string/title_activity_pauta"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.TeoreMus" />
         <activity
             android:name=".view.moduloi.qualidades.QualidadesDoSom"
             android:exported="false"
             android:label="@string/title_activity_qualidades_do_som"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.TeoreMus" />
         <activity
             android:name=".view.moduloi.notas.NotasActivity"
             android:exported="false"
             android:label="@string/title_activity_notas"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.TeoreMus" />
         <activity
             android:name=".view.moduloi.inicio.InicioI"
             android:exported="false"
             android:label="@string/title_activity_inicio_i"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.TeoreMus" />
         <activity
             android:name=".view.moduloi.ModuloI"
             android:exported="false"
             android:label="@string/title_activity_modulo_i"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.TeoreMus" />
         <activity
             android:name=".view.moduloii.ModuloII"
             android:exported="false"
             android:label="@string/title_activity_modulo_i"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.TeoreMus" />
         <activity
             android:name=".view.moduloiii.ModuloIII"
             android:exported="false"
             android:label="@string/title_activity_modulo_i"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.TeoreMus" />
         <activity
             android:name=".view.moduloiv.ModuloIV"
             android:exported="false"
             android:label="@string/title_activity_modulo_i"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.TeoreMus" />
         <activity
             android:name=".view.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.TeoreMus">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
