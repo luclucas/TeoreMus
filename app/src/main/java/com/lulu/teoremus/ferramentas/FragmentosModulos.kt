@@ -208,7 +208,9 @@ fun CaixaParaOuvir(texto: String, midia: Midias, escolha: Escolhas, context: Con
                     color = colorResource(id = R.color.black)
                     ,
                     fontSize = 20.sp,
-                    style = Typography.body1
+                    style = Typography.body1,
+                    textAlign = TextAlign.Center
+
                 )
 
                 Button(
@@ -223,7 +225,8 @@ fun CaixaParaOuvir(texto: String, midia: Midias, escolha: Escolhas, context: Con
                 ) {
                     Text(
                         text = "Toque-me", color = colorResource(id = R.color.texto_botao_mod), fontSize = 18.sp,
-                        style = Typography.body1
+                        style = Typography.body1,
+
                     )
                 }
             }

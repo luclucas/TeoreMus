@@ -4,7 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
@@ -17,22 +24,23 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
-import com.lulu.teoremus.view.moduloii.escala_maior.EscalaMaior
-import com.lulu.teoremus.view.moduloii.escala_menor.EscalaMenor
 import com.lulu.teoremus.view.moduloii.escalas.Escalas
+import com.lulu.teoremus.view.moduloii.graus.Graus
 import com.lulu.teoremus.view.moduloii.intervalos.Intervalos
+import com.lulu.teoremus.view.moduloii.tom_tonalidade.TomTonalidade
 
 val listaNomes = listOf(
-    "Intervalo", "Escalas", "Escala Maior", "Escala Menor",
+    "Intervalo", "Escalas", "Graus", "Tom x Tonalidade"
 )
 
 
 val listaActivity = listOf(
     Intervalos::class.java,
     Escalas::class.java,
-    EscalaMaior::class.java,
-    EscalaMenor::class.java,
-)
+    Graus::class.java,
+    TomTonalidade::class.java
+
+    )
 
 class ModuloII : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,16 +60,15 @@ private fun CriarBotoes() {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        for (i in listaNomes.indices step 2) {
-            var isRow = true
-            if (isRow) {
-                Row() {
-                    BotoesAula(nome = listaNomes[i], i)
-                    BotoesAula(nome = listaNomes[i + 1], i + 1)
-                    isRow = false
-                }
+            Row() {
+                BotoesAula(nome = listaNomes[0], 0)
+                BotoesAula(nome = listaNomes[1], 1)
             }
+        Row() {
+            BotoesAula(nome = listaNomes[2], 2)
+            BotoesAula(nome = listaNomes[3], 3)
         }
+     //   BotoesAula(nome = listaNomes.last(), listaNomes.lastIndex)
         BotaoQuiz()
     }
 }
@@ -79,7 +86,12 @@ private fun BotoesAula(nome: String, i: Int) {
             .size(130.dp),
         colors = ButtonDefaults.buttonColors(colorResource(id = R.color.cor_botoes_modulo))
     ) {
-        Text(text = nome, fontSize = 18.sp, color = colorResource(id = R.color.texto_botao_mod), textAlign = TextAlign.Center)
+        Text(
+            text = nome,
+            fontSize = 18.sp,
+            color = colorResource(id = R.color.texto_botao_mod),
+            textAlign = TextAlign.Center
+        )
     }
 }
 

@@ -19,4 +19,11 @@
     <string name="title_activity_escala_maior">EscalaMaior</string>
     <string name="title_activity_intervalos2">Intervalos2</string>
     <string name="title_activity_intervalos3">Intervalos3</string>
+    <string name="title_activity_graus">Graus</string>
+    <string name="title_activity_escalas_ii">EscalasII</string>
+    <string name="title_activity_tom_tonalidade">TomTonalidade</string>
+    <string name="title_activity_acordes">Acordes</string>
+    <string name="title_activity_cifras">Cifras</string>
+    <string name="title_activity_tetrades">Tetrades</string>
+    <string name="title_activity_triades">Triades</string>
 </resources>

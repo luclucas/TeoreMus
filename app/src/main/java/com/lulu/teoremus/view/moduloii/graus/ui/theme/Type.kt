@@ -1,4 +1,4 @@
-package com.lulu.teoremus.view.moduloii.escala_menor.ui.theme
+package com.lulu.teoremus.view.moduloii.graus.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

@@ -12,6 +12,41 @@
         android:theme="@style/Theme.TeoreMus"
         tools:targetApi="31">
         <activity
+            android:name=".view.moduloiii.triades.Triades"
+            android:exported="false"
+            android:label="@string/title_activity_triades"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
+            android:name=".view.moduloiii.tetrades.Tetrades"
+            android:exported="false"
+            android:label="@string/title_activity_tetrades"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
+            android:name=".view.moduloiii.cifras.Cifras"
+            android:exported="false"
+            android:label="@string/title_activity_cifras"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
+            android:name=".view.moduloiii.acordes.Acordes"
+            android:exported="false"
+            android:label="@string/title_activity_acordes"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
+            android:name=".view.moduloii.tom_tonalidade.TomTonalidade"
+            android:exported="false"
+            android:label="@string/title_activity_tom_tonalidade"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
+            android:name=".view.moduloii.escalas.EscalasII"
+            android:exported="false"
+            android:label="@string/title_activity_escalas_ii"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
+            android:name=".view.moduloii.graus.Graus"
+            android:exported="false"
+            android:label="@string/title_activity_graus"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
             android:name=".view.moduloii.intervalos.Intervalos3"
             android:exported="false"
             android:label="@string/title_activity_intervalos3"

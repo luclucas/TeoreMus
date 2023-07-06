@@ -1,4 +1,4 @@
-package com.lulu.teoremus.view.moduloii.intervalos
+package com.lulu.teoremus.view.moduloii.graus
 
 import android.app.Activity
 import android.content.Intent
@@ -11,6 +11,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,15 +20,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
 import com.lulu.teoremus.ferramentas.Subtitulo
 import com.lulu.teoremus.ferramentas.Texto
-import com.lulu.teoremus.view.moduloi.ModuloI
+import com.lulu.teoremus.ferramentas.Titulo
 import com.lulu.teoremus.view.moduloii.ModuloII
+import com.lulu.teoremus.view.moduloii.graus.ui.theme.TeoreMusTheme
 
-class Intervalos3 : ComponentActivity() {
+class Graus : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -37,6 +41,7 @@ class Intervalos3 : ComponentActivity() {
 
 @Composable
 private fun Tela() {
+
     val context = LocalContext.current
     Column(
         modifier = Modifier
@@ -45,30 +50,10 @@ private fun Tela() {
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Subtitulo(titulo = "Qualitativamente")
-        Texto(texto = "A classificação de acordo com a qualidade é feita com base no número de tons e semitons contidos no intervalo. Se divide em dois tipos, os justos e os maiores ou menores")
+        Titulo(titulo = "Graus")
 
-        Texto(texto = "Justos:\n\nprimeira justa (1ª j) - mesmo tom e altura;\n\nquartaª justa (4ª j) - 2 tons e 1 semitom;\n\nquinta justa (5ª j) - 3 tons e 1 semitom;\n\noitava justa (8ª j) - 5 tons e 2 semitons.")
+        Texto(texto = "Os graus são nomes dados às notas que formam a escala. São numerados por números romanos. Abaixo estão os graus na escala de dó maior, porém os mesmos servem para qualquer tom das escalas diatônicas.")
 
-        Texto(texto = "Maiores ou menores:\n\nsegunda maior (2ª M) - 1 tom;\n\nsegunda menor (2ª m) - 1 semitom;\n\nterça maior (3ª M) - 2 tons;\n\nterça menor (3ª m) - 1 tom e 1 semitom;\n\nsexta maior (6ª M) - 4 tons e 1 semitom;\n\nsexta menor (6ª m) - 3 toms e 2 semitons;\n\nsétima maior (7ª M) - 5 tons e 1 semitom;\n\nsétima menor (7ª m) - 4 tons e 2 semitons.")
-
-
-        Subtitulo(titulo = "Intervalos aumentados e diminutos")
-
-        Texto("Intervalos aumentados: são os que tem um semitom acima dos justos")
-
-
-        Image(
-            modifier = Modifier
-                .padding(top = 30.dp)
-                .fillMaxWidth()
-                .size(100.dp),
-            alignment = Alignment.Center,
-            painter = painterResource(id = R.drawable.img_quarta_aumentadal),
-            contentDescription = "4 aumentada"
-        )
-
-        Texto(texto = "Intervalos diminutos: são os que tem um semitom abaixo dos justos")
 
         Image(
             modifier = Modifier
@@ -76,9 +61,27 @@ private fun Tela() {
                 .fillMaxWidth()
                 .size(120.dp),
             alignment = Alignment.Center,
-            painter = painterResource(id = R.drawable.img_quarta_diminuta),
-            contentDescription = "4 diminuta"
+            painter = painterResource(id = R.drawable.img_graus),
+            contentDescription = "escala c"
         )
+
+        Texto(texto = "Cada grau também recebe um nome, conforme a função que exerce. São eles, respectivamente: ")
+
+        Texto(texto = "Tônica\n\nSupertônica\n\nMediante\n\nSubdominante\n\nDominante\n\nSuperdominante\n\nSensível ou subtônica")
+
+        Texto(texto = "Os graus mais importantes são o primeiro (tônica), o quarto (subdominante) e o quinto (dominante).\n\nO sétimo grau é sensível se está meio tom abaixo da tônica. Se estiver um tom, é chamado de subtônica.")
+        
+        
+        Subtitulo(titulo = "Graus Modais")
+
+        Texto(texto = "Caracterizam uma escala como maior ou menor, são eles: III, IV e VII.")
+        Texto(texto = "O grau III sempre irá diferir. Se ele é maior, a escala será maior, senão, menor. Já os graus IV e  VII podem ou não diferir.")
+
+        Subtitulo(titulo = "Tom e tonalidade")
+        
+        Texto(texto = "O termo \"TOM\" tem relação com a altura em que está a tonalidade, ou seja, terá o mesmo conjunto de notas que a escala, mas não necessariamente na ordem. Dizemos que uma música está no tom de determinada nota, quando esta nota é a tônica.")
+
+        Texto(texto = "A TONALIDADE se refere às escalas associadas ao campo harmônico, pode ser maior, menor, menor harmônica e menor melódica.")
 
         Button(onClick = {
             val activity = (context as? Activity)
@@ -90,6 +93,6 @@ private fun Tela() {
         }, Modifier.padding(30.dp), colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)) {
             Text(text = "Finalizar", color = Color.White, fontSize = 20.sp)
         }
-    }
 
+    }
 }
