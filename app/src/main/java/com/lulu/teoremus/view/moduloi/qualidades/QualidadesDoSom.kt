@@ -16,15 +16,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.lulu.teoremus.ferramentas.CaixaDesafio
-import com.lulu.teoremus.ferramentas.Subtitulo
-import com.lulu.teoremus.ferramentas.Texto
-import com.lulu.teoremus.ferramentas.Titulo
+import com.lulu.teoremus.utils.CaixaDesafio
+import com.lulu.teoremus.utils.Subtitulo
+import com.lulu.teoremus.utils.Texto
+import com.lulu.teoremus.utils.Titulo
 import com.lulu.teoremus.view.moduloi.ModuloI
-import com.lulu.teoremus.view.moduloi.qualidades.ui.theme.TeoreMusTheme
 
 class QualidadesDoSom : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

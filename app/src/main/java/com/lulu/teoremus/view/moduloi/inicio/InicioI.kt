@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
 import com.lulu.teoremus.enums.Escolhas
-import com.lulu.teoremus.ferramentas.*
+import com.lulu.teoremus.utils.*
 import com.lulu.teoremus.view.moduloi.ModuloI
 
 

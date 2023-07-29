@@ -13,9 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.lulu.teoremus.R
-import com.lulu.teoremus.ferramentas.Subtitulo
-import com.lulu.teoremus.ferramentas.Texto
-import com.lulu.teoremus.ferramentas.Titulo
+import com.lulu.teoremus.utils.Subtitulo
+import com.lulu.teoremus.utils.Texto
+import com.lulu.teoremus.utils.Titulo
 
 class Pauta : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.lulu.teoremus.ferramentas
+package com.lulu.teoremus.utils
 
 
 import android.content.Context

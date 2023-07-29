@@ -1,4 +1,4 @@
-package com.lulu.teoremus.ferramentas
+package com.lulu.teoremus.utils
 
 import android.content.Context
 import androidx.compose.foundation.background
@@ -69,7 +69,7 @@ fun Texto(texto: String) {
 }
 
 @Composable
-fun BotaoAudio(texto: String, midia: Midias, escolha: Escolhas, context: Context ) {
+fun BotaoAudio(texto: String, midia: Midias, escolha: Escolhas, context: Context) {
     Button(
         onClick = {
             midia.alterarEscolha(escolha, context)
@@ -141,8 +141,7 @@ fun CaixaDesafio(texto: String) {
                         .padding(top = 20.dp, start = 20.dp, end = 20.dp)
                         .background(color = Color.White, shape = RoundedCornerShape(10.dp))
                         .padding(10.dp),
-                    color = colorResource(id = R.color.black)
-                    ,
+                    color = colorResource(id = R.color.black),
                     fontSize = 20.sp,
                     style = Typography.body1
                 )
@@ -167,7 +166,7 @@ fun CaixaParaOuvir(texto: String, midia: Midias, escolha: Escolhas, context: Con
                 color = colorResource(id = R.color.fundo_para_ouvir),
                 shape = RoundedCornerShape(10.dp)
             )
-           // .clickable { expandido.value = !expandido.value },
+        // .clickable { expandido.value = !expandido.value },
     ) {
         Column(
             modifier = Modifier
@@ -184,7 +183,8 @@ fun CaixaParaOuvir(texto: String, midia: Midias, escolha: Escolhas, context: Con
                 )
 
                 Icon(
-                    icone, "Icone",
+                    icone,
+                    "Icone",
                     Modifier
                         .padding(top = 5.dp, start = 60.dp)
                         .size(30.dp)
@@ -192,8 +192,8 @@ fun CaixaParaOuvir(texto: String, midia: Midias, escolha: Escolhas, context: Con
                             color = Color.White,
                             shape = CircleShape
                         )
-                        .clickable { expandido.value = !expandido.value }
-                    , tint = colorResource(id = R.color.card_tela_principal)
+                        .clickable { expandido.value = !expandido.value },
+                    tint = colorResource(id = R.color.card_tela_principal)
 
                 )
 
@@ -205,8 +205,7 @@ fun CaixaParaOuvir(texto: String, midia: Midias, escolha: Escolhas, context: Con
                         .padding(top = 20.dp, start = 20.dp, end = 20.dp)
                         .background(color = Color.White, shape = RoundedCornerShape(10.dp))
                         .padding(10.dp),
-                    color = colorResource(id = R.color.black)
-                    ,
+                    color = colorResource(id = R.color.black),
                     fontSize = 20.sp,
                     style = Typography.body1,
                     textAlign = TextAlign.Center
@@ -224,15 +223,106 @@ fun CaixaParaOuvir(texto: String, midia: Midias, escolha: Escolhas, context: Con
                     colors = ButtonDefaults.buttonColors(colorResource(id = R.color.cor_botoes_modulo))
                 ) {
                     Text(
-                        text = "Toque-me", color = colorResource(id = R.color.texto_botao_mod), fontSize = 18.sp,
+                        text = "Toque-me",
+                        color = colorResource(id = R.color.texto_botao_mod),
+                        fontSize = 18.sp,
                         style = Typography.body1,
 
-                    )
+                        )
                 }
             }
         }
     }
 }
+
+
+@Composable
+fun CaixaParaOuvir2(texto: String, midia: Midias, escolhas: List<Escolhas>, context: Context) {
+    val expandido = remember {
+        mutableStateOf(false)
+    }
+    val icone =
+        if (!expandido.value) Icons.Default.KeyboardArrowDown else Icons.Default.KeyboardArrowUp
+    val extraPadding = if (expandido.value) 20.dp else 0.dp
+    Box(
+        modifier = Modifier
+            .padding(20.dp)
+            .fillMaxWidth()
+            .background(
+                color = colorResource(id = R.color.fundo_para_ouvir),
+                shape = RoundedCornerShape(10.dp)
+            )
+        // .clickable { expandido.value = !expandido.value },
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 20.dp, bottom = 20.dp + extraPadding),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Row {
+                Text(
+                    text = "Para Ouvir",
+                    fontSize = 25.sp,
+                    color = colorResource(id = R.color.card_tela_principal),
+                    style = Typography.body1
+                )
+
+                Icon(
+                    icone,
+                    "Icone",
+                    Modifier
+                        .padding(top = 5.dp, start = 60.dp)
+                        .size(30.dp)
+                        .background(
+                            color = Color.White,
+                            shape = CircleShape
+                        )
+                        .clickable { expandido.value = !expandido.value },
+                    tint = colorResource(id = R.color.card_tela_principal)
+
+                )
+
+            }
+            if (expandido.value) {
+                Text(
+                    text = texto,
+                    Modifier
+                        .padding(top = 20.dp, start = 20.dp, end = 20.dp)
+                        .background(color = Color.White, shape = RoundedCornerShape(10.dp))
+                        .padding(10.dp),
+                    color = colorResource(id = R.color.black),
+                    fontSize = 20.sp,
+                    style = Typography.body1,
+                    textAlign = TextAlign.Center
+
+                )
+
+                for (i in escolhas) {
+                    Button(
+                        onClick = {
+                            midia.alterarEscolha(i, context)
+                            midia.start()
+
+                        }, modifier = Modifier
+                            .padding(top = 20.dp, bottom = 20.dp)
+                            .padding(20.dp),
+                        colors = ButtonDefaults.buttonColors(colorResource(id = R.color.cor_botoes_modulo))
+                    ) {
+                        Text(
+                            text = "Toque-me",
+                            color = colorResource(id = R.color.texto_botao_mod),
+                            fontSize = 18.sp,
+                            style = Typography.body1,
+
+                            )
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 @Composable
 fun CaixaResposta(texto: String) {
@@ -289,8 +379,7 @@ fun CaixaResposta(texto: String) {
                         .padding(10.dp)
                         .fillMaxWidth(),
 
-                    color = colorResource(id = R.color.black)
-                    ,
+                    color = colorResource(id = R.color.black),
                     fontSize = 20.sp,
                     style = Typography.body1,
                     textAlign = TextAlign.Center

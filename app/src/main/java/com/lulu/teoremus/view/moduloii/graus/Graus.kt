@@ -11,8 +11,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,15 +18,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
-import com.lulu.teoremus.ferramentas.Subtitulo
-import com.lulu.teoremus.ferramentas.Texto
-import com.lulu.teoremus.ferramentas.Titulo
+import com.lulu.teoremus.utils.Subtitulo
+import com.lulu.teoremus.utils.Texto
+import com.lulu.teoremus.utils.Titulo
 import com.lulu.teoremus.view.moduloii.ModuloII
-import com.lulu.teoremus.view.moduloii.graus.ui.theme.TeoreMusTheme
 
 class Graus : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,12 +72,6 @@ private fun Tela() {
 
         Texto(texto = "Caracterizam uma escala como maior ou menor, são eles: III, IV e VII.")
         Texto(texto = "O grau III sempre irá diferir. Se ele é maior, a escala será maior, senão, menor. Já os graus IV e  VII podem ou não diferir.")
-
-        Subtitulo(titulo = "Tom e tonalidade")
-        
-        Texto(texto = "O termo \"TOM\" tem relação com a altura em que está a tonalidade, ou seja, terá o mesmo conjunto de notas que a escala, mas não necessariamente na ordem. Dizemos que uma música está no tom de determinada nota, quando esta nota é a tônica.")
-
-        Texto(texto = "A TONALIDADE se refere às escalas associadas ao campo harmônico, pode ser maior, menor, menor harmônica e menor melódica.")
 
         Button(onClick = {
             val activity = (context as? Activity)

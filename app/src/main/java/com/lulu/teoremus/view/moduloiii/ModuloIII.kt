@@ -32,7 +32,7 @@ import com.lulu.teoremus.view.moduloiii.triades.Triades
 class ModuloIII : ComponentActivity() {
 
     private val listaNomes = listOf(
-        "Acordes", "Tríades", "Tetrades", "Cifras"
+        "Acordes", "Tríades", "Tétrades", "Cifras"
     )
 
 

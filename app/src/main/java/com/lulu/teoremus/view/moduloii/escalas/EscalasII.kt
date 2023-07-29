@@ -25,8 +25,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
-import com.lulu.teoremus.ferramentas.Subtitulo
-import com.lulu.teoremus.ferramentas.Texto
+import com.lulu.teoremus.utils.Subtitulo
+import com.lulu.teoremus.utils.Texto
 import com.lulu.teoremus.view.moduloii.ModuloII
 
 class EscalasII : ComponentActivity() {

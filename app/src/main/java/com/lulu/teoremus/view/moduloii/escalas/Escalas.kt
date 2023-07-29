@@ -26,11 +26,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
 import com.lulu.teoremus.enums.Escolhas
-import com.lulu.teoremus.ferramentas.CaixaParaOuvir
-import com.lulu.teoremus.ferramentas.Midias
-import com.lulu.teoremus.ferramentas.Subtitulo
-import com.lulu.teoremus.ferramentas.Texto
-import com.lulu.teoremus.ferramentas.Titulo
+import com.lulu.teoremus.utils.CaixaParaOuvir
+import com.lulu.teoremus.utils.Midias
+import com.lulu.teoremus.utils.Subtitulo
+import com.lulu.teoremus.utils.Texto
+import com.lulu.teoremus.utils.Titulo
 
 class Escalas : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

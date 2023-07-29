@@ -20,9 +20,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.lulu.teoremus.R
-import com.lulu.teoremus.ferramentas.CaixaResposta
-import com.lulu.teoremus.ferramentas.Texto
-import com.lulu.teoremus.ferramentas.Titulo
+import com.lulu.teoremus.utils.CaixaResposta
+import com.lulu.teoremus.utils.Texto
+import com.lulu.teoremus.utils.Titulo
 
 
 

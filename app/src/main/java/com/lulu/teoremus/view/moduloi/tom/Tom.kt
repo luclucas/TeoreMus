@@ -8,18 +8,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.lulu.teoremus.ferramentas.Subtitulo
-import com.lulu.teoremus.ferramentas.Texto
-import com.lulu.teoremus.ferramentas.Titulo
-import com.lulu.teoremus.view.moduloi.tom.ui.theme.TeoreMusTheme
+import com.lulu.teoremus.utils.Subtitulo
+import com.lulu.teoremus.utils.Texto
+import com.lulu.teoremus.utils.Titulo
 
 class Tom : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

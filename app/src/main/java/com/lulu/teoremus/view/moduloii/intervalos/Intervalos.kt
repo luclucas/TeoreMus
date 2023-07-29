@@ -22,10 +22,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
-import com.lulu.teoremus.ferramentas.Subtitulo
-import com.lulu.teoremus.ferramentas.Texto
-import com.lulu.teoremus.ferramentas.Titulo
-import com.lulu.teoremus.view.moduloi.clave_sol.ClaveSolExercicio
+import com.lulu.teoremus.utils.Subtitulo
+import com.lulu.teoremus.utils.Texto
+import com.lulu.teoremus.utils.Titulo
 
 class Intervalos : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
