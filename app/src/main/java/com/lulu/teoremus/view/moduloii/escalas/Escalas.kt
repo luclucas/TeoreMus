@@ -103,7 +103,7 @@ private fun Tela() {
         )
 
         CaixaParaOuvir(
-            texto = "Ouça a escala de dó maior",
+            texto = "Ouça a escala cromática",
             midia = midia,
             escolha = Escolhas.ESCALA_CROMATICA,
             context = context

@@ -13,5 +13,6 @@
     <color name="texto_botao_mod">#FFFFFFFF</color>
     <color name="texto_botao_quiz">#FFFFFF00</color>
     <color name="fundo_para_ouvir">#f6b60d</color>
+    <color name="azul_claro">#FF8DE5E9</color>
 
 </resources>

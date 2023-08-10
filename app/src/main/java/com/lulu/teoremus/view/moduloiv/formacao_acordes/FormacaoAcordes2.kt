@@ -1,4 +1,4 @@
-package com.lulu.teoremus.view.moduloiii.triades
+package com.lulu.teoremus.view.moduloiv.formacao_acordes
 
 import android.app.Activity
 import android.content.Intent
@@ -12,23 +12,20 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.utils.Subtitulo
 import com.lulu.teoremus.utils.Texto
 import com.lulu.teoremus.utils.Titulo
-import com.lulu.teoremus.view.moduloiii.ModuloIII
+import com.lulu.teoremus.view.moduloiv.ModuloIV
 
-class Triades : ComponentActivity() {
+class FormacaoAcordes2 : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -39,7 +36,9 @@ class Triades : ComponentActivity() {
 
 @Composable
 private fun Tela() {
+
     val context = LocalContext.current
+
     Column(
         modifier = Modifier
             .padding(20.dp)
@@ -47,33 +46,24 @@ private fun Tela() {
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Titulo(titulo = "Tríades")
 
-        Texto(texto = "Na aula anterior vimos as notas naturais, formadas pela tônica, terça e quinta. Esses acordes são chamados de tríades, formados por duas terças consecutivas. Veremos como elas são classificadas.")
+        Titulo(titulo = "Lista dos acordes")
 
-        Subtitulo(titulo = "Maior")
-        Texto(texto = "Formados por: 1ª - 3ª maior - 5ª justa")
+        Texto(texto = "Abaixo teremos a lista dos acordes maiores e menores. As notas que estão entre parênteses são a sétima maior e a sétima menor, respectivamente. Nos acordes menores, utilizaremos apenas a sétima menor, pois estamos seguindo a escala maior natural.")
 
-        Subtitulo(titulo = "Menor")
-        Texto(texto = "Formados por: 1ª - 3ª menor - 5ª justa")
+        Subtitulo(titulo = "Maiores")
 
+        Texto(texto = "Dó - C E G (B ou Bb)\nRé - D F# A (C# ou C)\nMi - E G# B (D# ou D)\nFá - F A C (E ou Eb)\nSol - G B D (F# ou F)\nLá - A C# E (G# ou G)\nSi - B D# F# (A# ou A)")
 
-        Subtitulo(titulo = "Suspenso")
-        Texto(texto = "Formados por: 1ª - 2ª ou 4ª - 5ª justa")
+        Subtitulo(titulo = "Menores")
 
-
-        Subtitulo(titulo = "Aumentada")
-        Texto(texto = "Formados por: 1ª - 3ª maior - 5ª aumentada")
-
-
-        Subtitulo(titulo = "Diminuto")
-        Texto(texto = "Formados por: 1ª - 3ª menor - 5ª diminuta")
+        Texto(texto = "Dó - C Eb G (Bb)\nRé - D F A (C)\nMi - E G B (D)\nFá - F Ab C (Eb)\nSol - G Bb D (F)\nLá - A C E (G)\nSi - B D F# (A)")
 
 
         Button(
             onClick = {
                 val activity = (context as? Activity)
-                val i = Intent(context, ModuloIII::class.java)
+                val i = Intent(context, ModuloIV::class.java)
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 activity?.startActivity(i)
                 activity?.finish()
@@ -82,8 +72,7 @@ private fun Tela() {
             Modifier.padding(30.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
         ) {
-            androidx.compose.material.Text(text = "Finalizar", color = Color.White, fontSize = 20.sp)
+            Text(text = "Finalizar", color = Color.White, fontSize = 20.sp)
         }
     }
 }
-

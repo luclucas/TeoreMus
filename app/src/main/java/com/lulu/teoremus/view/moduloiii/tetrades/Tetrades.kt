@@ -27,7 +27,6 @@ import com.lulu.teoremus.utils.Subtitulo
 import com.lulu.teoremus.utils.Texto
 import com.lulu.teoremus.utils.Titulo
 import com.lulu.teoremus.view.moduloiii.ModuloIII
-import com.lulu.teoremus.view.moduloiii.tetrades.ui.theme.TeoreMusTheme
 
 class Tetrades : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

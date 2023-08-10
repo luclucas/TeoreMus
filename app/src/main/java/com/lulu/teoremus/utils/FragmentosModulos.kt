@@ -388,3 +388,49 @@ fun CaixaResposta(texto: String) {
         }
     }
 }
+
+@Composable
+fun Tabela(titulos: List<String>,data: List<List<String>>, columns: Int) {
+
+    val columnWeight = 1/columns.toFloat() // 30
+
+    // The LazyColumn will be our table. Notice the use of the weights below
+    Column(
+        Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        // Here is the header
+
+        Row(Modifier.background(Color(R.color.azul_claro))) {
+            for(i in titulos){
+                TableCell(text = i, weight = columnWeight)
+            }
+        }
+        // Here are all the lines of your table.
+
+        for (i in data) {
+            Row(Modifier.fillMaxWidth()) {
+                for (j in 0 until columns){
+                    TableCell(text = i[j], weight = columnWeight)
+
+                }
+            }
+        }
+    }
+}
+
+
+@Composable
+fun RowScope.TableCell(
+    text: String,
+    weight: Float
+) {
+    Text(
+        text = text,
+        Modifier
+            .weight(weight)
+            .padding(8.dp)
+
+    )
+}

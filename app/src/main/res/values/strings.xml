@@ -26,4 +26,11 @@
     <string name="title_activity_cifras">Cifras</string>
     <string name="title_activity_tetrades">Tetrades</string>
     <string name="title_activity_triades">Triades</string>
+    <string name="title_activity_campo_harmonico">CampoHarmonico</string>
+    <string name="title_activity_ciclo_quartas">CicloQuartas</string>
+    <string name="title_activity_ciclo_quintas">CicloQuintas</string>
+    <string name="title_activity_inversao_acordes">InversaoAcordes</string>
+    <string name="title_activity_formacao_acordes2">FormacaoAcordes2</string>
+    <string name="title_activity_imagem">Imagem</string>
+    <string name="title_activity_campo_harmonico2">CampoHarmonico2</string>
 </resources>

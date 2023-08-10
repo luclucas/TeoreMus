@@ -1,4 +1,4 @@
-package com.lulu.teoremus.view.moduloi.notas
+package com.lulu.teoremus.view.moduloiv.formacao_acordes
 
 import android.app.Activity
 import android.content.Intent
@@ -15,6 +15,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,12 +28,10 @@ import com.lulu.teoremus.R
 import com.lulu.teoremus.enums.Escolhas
 import com.lulu.teoremus.utils.CaixaParaOuvir
 import com.lulu.teoremus.utils.Midias
-import com.lulu.teoremus.utils.Subtitulo
 import com.lulu.teoremus.utils.Texto
 import com.lulu.teoremus.utils.Titulo
-import com.lulu.teoremus.view.moduloi.ModuloI
 
-class NotasActivity : ComponentActivity() {
+class FormacaoAcordes : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -43,9 +42,8 @@ class NotasActivity : ComponentActivity() {
 
 @Composable
 private fun Tela() {
-    val midia = Midias()
     val context = LocalContext.current
-
+    val midia = Midias()
     Column(
         modifier = Modifier
             .padding(20.dp)
@@ -53,28 +51,14 @@ private fun Tela() {
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Titulo(titulo = "Formação de acordes")
 
-        Titulo(titulo = "Notas")
-        Texto(texto = "Uma nota musical se dá pela frequência do som, podendo haver a mesma nota em diferentes alturas, ou seja, uma mesma nota pode ser tocada de uma forma aguda ou grave.")
+        Texto(texto = "Vimos no módulo anterior que os acordes possuem a tônica, terça e quinta (eventualmente, pode haver a sétima).")
 
-        Subtitulo(titulo = "As notas musicais")
+        Texto(texto = "Porém, não significa que as notas devam aparecer apenas uma vez. Em alguns casos, pode-se repetir a nota para que ela dê uma sonoridade diferente do mesmo acorde, mas com apenas três notas.")
 
-        Texto(texto = "No sistema ocidental, existem 7 notas musicais, abaixo estão os seus nomes e letras utilizadas para representá-las:")
+        Texto(texto = "Na imagem abaixo, você pode ter diferentes formas de tocar o acorde de Dó")
 
-        Texto(texto ="Dó - C\n" +
-                "Ré - D\n" +
-                "Mi -  E\n" +
-                "Fá -  F\n" +
-                "Sol - G\n" +
-                "Lá -  A\n" +
-                "Si -   B")
-
-        Texto(texto = "A nota \"Si\" também é representada como H na notação alemã")
-
-        Subtitulo(titulo = "Partitura")
-
-        Texto(texto = "Outra maneira de representar as notas é por meio das partituras\n" +
-                "Na imagem abaixo, você pode ver um exemplo de como elas são escritas: ")
 
         Image(
             modifier = Modifier
@@ -82,25 +66,31 @@ private fun Tela() {
                 .fillMaxWidth()
                 .size(100.dp),
             alignment = Alignment.Center,
-            painter = painterResource(id = R.drawable.img_escala_c_i),
-            contentDescription = "Escala dó"
+            painter = painterResource(id = R.drawable.img_formacao_acordes),
+            contentDescription = "Clave"
         )
 
-        CaixaParaOuvir(texto = "Toque no botão abaixo para ouvir a escala de dó maior", midia = midia, escolha = Escolhas.ESCALA_C, context = context)
+        CaixaParaOuvir(
+            texto = "Aqui você pode ouvir os sons representados pela imagem acima",
+            midia = midia,
+            escolha = Escolhas.FORMACAO_ACORDES,
+            context = context
+        )
+
+        Texto(texto = "Os acordes não precisam ser formados na ordem tônica, terça, quinta. Caso ela seja alterada, o fenômeno se chama inversão de acorde, estudaremos esse conteúdo mais tarde.")
 
         Button(
             onClick = {
                 val activity = (context as? Activity)
-                val i = Intent(context, ModuloI::class.java)
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                val i = Intent(context, FormacaoAcordes2::class.java)
                 activity?.startActivity(i)
-                activity?.finish()
-
             },
             Modifier.padding(30.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
         ) {
-            androidx.compose.material.Text(text = "Finalizar", color = Color.White, fontSize = 20.sp)
+            Text(text = "Avançar", color = Color.White, fontSize = 20.sp)
         }
     }
+
+
 }
