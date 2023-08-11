@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -24,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
 import com.lulu.teoremus.enums.Escolhas
 import com.lulu.teoremus.utils.*
+import com.lulu.teoremus.view.Imagem
 import com.lulu.teoremus.view.moduloi.ModuloI
 
 
@@ -60,20 +62,29 @@ private fun Tela() {
             modifier = Modifier
                 .padding(top = 30.dp)
                 .fillMaxWidth()
-                .size(100.dp),
+                .size(100.dp)
+                .clickable {
+                    val activity = (context as? Activity)
+                    val intent = Intent(context, Imagem::class.java)
+                    intent.putExtra("imagem", R.drawable.img_la_vie)
+
+                    activity?.startActivity(intent)
+                },
             alignment = Alignment.Center,
             painter = painterResource(id = R.drawable.img_la_vie),
-            contentDescription = "la vie"
+            contentDescription = "Clave"
         )
 
-        Texto(texto = "Tocando no botão abaixo, você ouvirá a melodia da música:")
+        CaixaParaOuvir(texto = "Tocando no botão abaixo, você ouvirá a melodia da música.", midia = midia, escolha = Escolhas.MELODIA_LA_VIE, context = context)
 
-        BotaoAudio(
-            texto = "Toque-me",
-            midia,
-            Escolhas.MELODIA_LA_VIE,
-            context
-        )
+//        Texto(texto = "Tocando no botão abaixo, você ouvirá a melodia da música.")
+//
+//        BotaoAudio(
+//            texto = "Toque-me",
+//            midia,
+//            Escolhas.MELODIA_LA_VIE,
+//            context
+//        )
 
         CaixaDesafio("Preste mais atenção nas melodias das músicas que você ouve. Quais as diferenças entre elas? ")
 
@@ -81,14 +92,17 @@ private fun Tela() {
 
         Texto(texto = "A harmonia se dá quando há duas ou mais notas tocadas ao mesmo tempo, por exemplo, um acorde")
 
-        Texto(texto = "Tocando no botão abaixo, você ouvirá o acorde de Dó maior")
 
-        BotaoAudio(
-            texto = "Toque-me",
-            midia,
-            Escolhas.C_VIOLAO,
-            context
-        )
+        CaixaParaOuvir(texto = "Tocando no botão abaixo, você ouvirá o acorde de Dó maior.", midia = midia, escolha = Escolhas.C_VIOLAO, context = context)
+//
+//        Texto(texto = "Tocando no botão abaixo, você ouvirá o acorde de Dó maior")
+//
+//        BotaoAudio(
+//            texto = "Toque-me",
+//            midia,
+//            Escolhas.C_VIOLAO,
+//            context
+//        )
 
         CaixaDesafio(texto = "Quando escutar uma música, preste atenção nos diferentes instrumentos que estão tocando e em como estão harmonizados")
 

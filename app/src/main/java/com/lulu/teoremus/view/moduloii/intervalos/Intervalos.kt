@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -25,6 +26,7 @@ import com.lulu.teoremus.R
 import com.lulu.teoremus.utils.Subtitulo
 import com.lulu.teoremus.utils.Texto
 import com.lulu.teoremus.utils.Titulo
+import com.lulu.teoremus.view.Imagem
 
 class Intervalos : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,11 +59,28 @@ private fun Tela() {
             modifier = Modifier
                 .padding(top = 30.dp)
                 .fillMaxWidth()
-                .size(120.dp),
+                .size(100.dp)
+                .clickable {
+                    val activity = (context as? Activity)
+                    val intent = Intent(context, Imagem::class.java)
+                    intent.putExtra("imagem", R.drawable.img_intervalo_melodico)
+
+                    activity?.startActivity(intent)
+                },
             alignment = Alignment.Center,
             painter = painterResource(id = R.drawable.img_intervalo_melodico),
-            contentDescription = "intervalo melodico"
+            contentDescription = "Clave"
         )
+
+//        Image(
+//            modifier = Modifier
+//                .padding(top = 30.dp)
+//                .fillMaxWidth()
+//                .size(120.dp),
+//            alignment = Alignment.Center,
+//            painter = painterResource(id = R.drawable.img_intervalo_melodico),
+//            contentDescription = "intervalo melodico"
+//        )
 
         Texto(texto = "1.2 - Harmônicos: Notas tocadas simultaneamente. Na imagem abaixo, é o mesmo intervalo tocado ao mesmo tempo")
 
@@ -69,11 +88,28 @@ private fun Tela() {
             modifier = Modifier
                 .padding(top = 30.dp)
                 .fillMaxWidth()
-                .size(120.dp),
+                .size(100.dp)
+                .clickable {
+                    val activity = (context as? Activity)
+                    val intent = Intent(context, Imagem::class.java)
+                    intent.putExtra("imagem", R.drawable.img_intervalo_harmonico)
+
+                    activity?.startActivity(intent)
+                },
             alignment = Alignment.Center,
             painter = painterResource(id = R.drawable.img_intervalo_harmonico),
-            contentDescription = "intervalo harmonico"
+            contentDescription = "Clave"
         )
+
+//        Image(
+//            modifier = Modifier
+//                .padding(top = 30.dp)
+//                .fillMaxWidth()
+//                .size(120.dp),
+//            alignment = Alignment.Center,
+//            painter = painterResource(id = R.drawable.img_intervalo_harmonico),
+//            contentDescription = "intervalo harmonico"
+//        )
 
         Texto(texto = "2.1 - Ascendentes: A primeira nota é mais grave que a segunda. A imagem do item 1.1 é ascendente")
 
@@ -83,11 +119,28 @@ private fun Tela() {
             modifier = Modifier
                 .padding(top = 30.dp)
                 .fillMaxWidth()
-                .size(120.dp),
+                .size(100.dp)
+                .clickable {
+                    val activity = (context as? Activity)
+                    val intent = Intent(context, Imagem::class.java)
+                    intent.putExtra("imagem", R.drawable.img_intervalo_descendente)
+
+                    activity?.startActivity(intent)
+                },
             alignment = Alignment.Center,
             painter = painterResource(id = R.drawable.img_intervalo_descendente),
-            contentDescription = "intervalo harmonico"
+            contentDescription = "Clave"
         )
+
+//        Image(
+//            modifier = Modifier
+//                .padding(top = 30.dp)
+//                .fillMaxWidth()
+//                .size(120.dp),
+//            alignment = Alignment.Center,
+//            painter = painterResource(id = R.drawable.img_intervalo_descendente),
+//            contentDescription = "intervalo harmonico"
+//        )
 
         Texto("3.1 - Simples: As duas notas estão na mesma oitava.")
 

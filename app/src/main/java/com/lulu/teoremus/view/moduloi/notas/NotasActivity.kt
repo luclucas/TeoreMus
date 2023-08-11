@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,8 +29,10 @@ import com.lulu.teoremus.enums.Escolhas
 import com.lulu.teoremus.utils.CaixaParaOuvir
 import com.lulu.teoremus.utils.Midias
 import com.lulu.teoremus.utils.Subtitulo
+import com.lulu.teoremus.utils.Tabela
 import com.lulu.teoremus.utils.Texto
 import com.lulu.teoremus.utils.Titulo
+import com.lulu.teoremus.view.Imagem
 import com.lulu.teoremus.view.moduloi.ModuloI
 
 class NotasActivity : ComponentActivity() {
@@ -46,6 +49,18 @@ private fun Tela() {
     val midia = Midias()
     val context = LocalContext.current
 
+    val columnsNotas = 2
+    val titulosNotas = listOf("Nota", "Cifra")
+    val dataNotas = listOf(
+        listOf("Dó", "C"),
+        listOf("Ré", "D"),
+        listOf("Mi", "E"),
+        listOf("Fá", "F"),
+        listOf("Sol", "G"),
+        listOf("Lá", "A"),
+        listOf("Si", "B"),
+
+    )
     Column(
         modifier = Modifier
             .padding(20.dp)
@@ -61,13 +76,15 @@ private fun Tela() {
 
         Texto(texto = "No sistema ocidental, existem 7 notas musicais, abaixo estão os seus nomes e letras utilizadas para representá-las:")
 
-        Texto(texto ="Dó - C\n" +
-                "Ré - D\n" +
-                "Mi -  E\n" +
-                "Fá -  F\n" +
-                "Sol - G\n" +
-                "Lá -  A\n" +
-                "Si -   B")
+        Tabela(titulos = titulosNotas, data = dataNotas, columns = columnsNotas)
+
+//        Texto(texto ="Dó - C\n" +
+//                "Ré - D\n" +
+//                "Mi -  E\n" +
+//                "Fá -  F\n" +
+//                "Sol - G\n" +
+//                "Lá -  A\n" +
+//                "Si -   B")
 
         Texto(texto = "A nota \"Si\" também é representada como H na notação alemã")
 
@@ -80,11 +97,28 @@ private fun Tela() {
             modifier = Modifier
                 .padding(top = 30.dp)
                 .fillMaxWidth()
-                .size(100.dp),
+                .size(100.dp)
+                .clickable {
+                    val activity = (context as? Activity)
+                    val intent = Intent(context, Imagem::class.java)
+                    intent.putExtra("imagem", R.drawable.img_escala_c_i)
+
+                    activity?.startActivity(intent)
+                },
             alignment = Alignment.Center,
             painter = painterResource(id = R.drawable.img_escala_c_i),
-            contentDescription = "Escala dó"
+            contentDescription = "Clave"
         )
+
+//        Image(
+//            modifier = Modifier
+//                .padding(top = 30.dp)
+//                .fillMaxWidth()
+//                .size(100.dp),
+//            alignment = Alignment.Center,
+//            painter = painterResource(id = R.drawable.img_escala_c_i),
+//            contentDescription = "Escala dó"
+//        )
 
         CaixaParaOuvir(texto = "Toque no botão abaixo para ouvir a escala de dó maior", midia = midia, escolha = Escolhas.ESCALA_C, context = context)
 

@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -24,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
 import com.lulu.teoremus.utils.Texto
 import com.lulu.teoremus.utils.Titulo
+import com.lulu.teoremus.view.Imagem
 
 class ClaveSol : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,11 +57,28 @@ private fun Tela() {
             modifier = Modifier
                 .padding(top = 30.dp)
                 .fillMaxWidth()
-                .size(100.dp),
+                .size(100.dp)
+                .clickable {
+                    val activity = (context as? Activity)
+                    val intent = Intent(context, Imagem::class.java)
+                    intent.putExtra("imagem", R.drawable.img_clave_sol)
+
+                    activity?.startActivity(intent)
+                },
             alignment = Alignment.Center,
             painter = painterResource(id = R.drawable.img_clave_sol),
             contentDescription = "Clave"
         )
+
+//        Image(
+//            modifier = Modifier
+//                .padding(top = 30.dp)
+//                .fillMaxWidth()
+//                .size(100.dp),
+//            alignment = Alignment.Center,
+//            painter = painterResource(id = R.drawable.img_clave_sol),
+//            contentDescription = "Clave"
+//        )
         
         Texto(texto = "Observe que também está sendo utilizada uma linha suplementar.")
 
