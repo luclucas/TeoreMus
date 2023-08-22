@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".ApplicationTeoremus"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -11,6 +14,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TeoreMus"
         tools:targetApi="31">
+        <activity
+            android:name=".view.login.TelaInicial"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".view.login.CriarConta"
+            android:exported="false"
+            android:label="@string/title_activity_criar_conta"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
+            android:name=".view.login.Login"
+            android:exported="true">
+        </activity>
         <activity
             android:name=".view.moduloiv.campo_harmonico.CampoHarmonico2"
             android:exported="false"
@@ -45,11 +66,6 @@
             android:name=".view.moduloiv.ciclo_quartas.CicloQuartas"
             android:exported="false"
             android:label="@string/title_activity_ciclo_quartas"
-            android:theme="@style/Theme.TeoreMus" />
-        <activity
-            android:name=".view.moduloiv.campo_harmonico.ui.CampoHarmonico"
-            android:exported="false"
-            android:label="@string/title_activity_campo_harmonico"
             android:theme="@style/Theme.TeoreMus" />
         <activity
             android:name=".view.moduloiii.triades.Triades"
@@ -95,16 +111,6 @@
             android:name=".view.moduloii.intervalos.Intervalos2"
             android:exported="false"
             android:label="@string/title_activity_intervalos2"
-            android:theme="@style/Theme.TeoreMus" />
-        <activity
-            android:name=".view.moduloii.escala_maior.EscalaMaior"
-            android:exported="false"
-            android:label="@string/title_activity_escala_maior"
-            android:theme="@style/Theme.TeoreMus" />
-        <activity
-            android:name=".view.moduloii.escala_menor.EscalaMenor"
-            android:exported="false"
-            android:label="@string/title_activity_escala_menor"
             android:theme="@style/Theme.TeoreMus" />
         <activity
             android:name=".view.moduloii.escalas.Escalas"
@@ -186,13 +192,7 @@
             android:exported="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.TeoreMus">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/Theme.TeoreMus" />
     </application>
 
 </manifest>

@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -30,6 +31,7 @@ import com.lulu.teoremus.utils.CaixaParaOuvir
 import com.lulu.teoremus.utils.Midias
 import com.lulu.teoremus.utils.Texto
 import com.lulu.teoremus.utils.Titulo
+import com.lulu.teoremus.view.Imagem
 
 class FormacaoAcordes : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +41,7 @@ class FormacaoAcordes : ComponentActivity() {
         }
     }
 }
+
 
 @Composable
 private fun Tela() {
@@ -57,18 +60,36 @@ private fun Tela() {
 
         Texto(texto = "Porém, não significa que as notas devam aparecer apenas uma vez. Em alguns casos, pode-se repetir a nota para que ela dê uma sonoridade diferente do mesmo acorde, mas com apenas três notas.")
 
-        Texto(texto = "Na imagem abaixo, você pode ter diferentes formas de tocar o acorde de Dó")
+        Texto(texto = "Na imagem abaixo você pode ter diferentes formas de tocar o acorde de Dó.")
 
 
         Image(
             modifier = Modifier
                 .padding(top = 30.dp)
                 .fillMaxWidth()
-                .size(100.dp),
+                .size(100.dp)
+                .clickable {
+                    val activity = (context as? Activity)
+                    val intent = Intent(context, Imagem::class.java)
+                    intent.putExtra("imagem", R.drawable.img_formacao_acordes)
+
+                    activity?.startActivity(intent)
+                },
             alignment = Alignment.Center,
             painter = painterResource(id = R.drawable.img_formacao_acordes),
             contentDescription = "Clave"
         )
+
+//
+//        Image(
+//            modifier = Modifier
+//                .padding(top = 30.dp)
+//                .fillMaxWidth()
+//                .size(100.dp),
+//            alignment = Alignment.Center,
+//            painter = painterResource(id = R.drawable.img_formacao_acordes),
+//            contentDescription = "Clave"
+//        )
 
         CaixaParaOuvir(
             texto = "Aqui você pode ouvir os sons representados pela imagem acima",
@@ -81,6 +102,7 @@ private fun Tela() {
 
         Button(
             onClick = {
+                midia.stop()
                 val activity = (context as? Activity)
                 val i = Intent(context, FormacaoAcordes2::class.java)
                 activity?.startActivity(i)

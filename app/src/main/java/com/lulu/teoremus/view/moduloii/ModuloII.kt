@@ -88,7 +88,7 @@ private fun BotoesAula(nome: String, i: Int) {
     ) {
         Text(
             text = nome,
-            fontSize = 18.sp,
+            fontSize = 15.sp,
             color = colorResource(id = R.color.texto_botao_mod),
             textAlign = TextAlign.Center
         )

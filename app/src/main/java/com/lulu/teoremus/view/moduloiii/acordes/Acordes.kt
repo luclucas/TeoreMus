@@ -78,6 +78,7 @@ private fun Tela() {
 
         Button(
             onClick = {
+                midia.stop()
                 val activity = (context as? Activity)
                 val i = Intent(context, ModuloIII::class.java)
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

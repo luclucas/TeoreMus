@@ -6,9 +6,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -20,6 +23,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -143,7 +153,8 @@ fun CaixaDesafio(texto: String) {
                         .padding(10.dp),
                     color = colorResource(id = R.color.black),
                     fontSize = 20.sp,
-                    style = Typography.body1
+                    style = Typography.body1,
+                    textAlign = TextAlign.Center
                 )
             }
         }
@@ -433,4 +444,94 @@ fun RowScope.TableCell(
             .padding(8.dp)
 
     )
+}
+
+
+
+@Composable
+fun CampoLogin(
+    value: String, label: String, onValueChange: (String) -> Unit, icon: Int,
+    placeholder: String, imeAction: ImeAction = ImeAction.Next, keyboardType: KeyboardType = KeyboardType.Email
+) {
+
+    Column(
+        Modifier
+            .padding(20.dp)
+            .fillMaxWidth()
+    ) {
+
+        Text(text = label, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+
+        OutlinedTextField(
+            value = value, onValueChange = onValueChange,
+            label = { Text(text = label) },
+            placeholder = { Text(placeholder) },
+            modifier = Modifier
+                .padding(top = 5.dp)
+                .fillMaxWidth(),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = keyboardType,
+                imeAction = imeAction
+            ),
+            singleLine = true,
+            leadingIcon = { Icon(painter = painterResource(icon), contentDescription = "") },
+            textStyle = TextStyle(
+                fontSize = 14.sp
+            )
+        )
+    }
+}
+
+@Composable
+fun CampoSenha(
+    senha: String, label: String, onValueChange: (String) -> Unit,
+    placeholder: String, imeAction: ImeAction = ImeAction.Done
+) {
+
+    val showPassword = remember { mutableStateOf(false) }
+    Column(
+        Modifier
+            .padding(20.dp)
+            .fillMaxWidth()
+    ) {
+
+        Text(text = "Senha", fontWeight = FontWeight.Bold, fontSize = 14.sp)
+
+        OutlinedTextField(
+            value = senha, onValueChange = onValueChange,
+            label = { Text(text = label) },
+            placeholder = { Text(placeholder) },
+            modifier = Modifier
+                .padding(top = 5.dp)
+                .fillMaxWidth(),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password,
+                imeAction = imeAction
+            ),
+            visualTransformation = if (showPassword.value) VisualTransformation.None else PasswordVisualTransformation(),
+
+
+            singleLine = true,
+            leadingIcon = {
+                Icon(
+                    painter = painterResource(R.drawable.icn_senha),
+                    contentDescription = ""
+                )
+            },
+
+            trailingIcon = {
+                val icon = if(showPassword.value){
+                    painterResource(R.drawable.icn_mostrar_senha)
+                } else{
+                    painterResource(R.drawable.icn_esconder_senha)
+                }
+                IconButton(onClick = { showPassword.value = !showPassword.value }) {
+                    Icon(painter = icon, contentDescription = " ")
+                }
+            },
+            textStyle = TextStyle(
+                fontSize = 14.sp
+            )
+        )
+    }
 }

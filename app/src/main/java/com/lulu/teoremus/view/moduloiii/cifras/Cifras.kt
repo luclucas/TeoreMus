@@ -21,6 +21,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.utils.Subtitulo
+import com.lulu.teoremus.utils.Tabela
 import com.lulu.teoremus.utils.Texto
 import com.lulu.teoremus.utils.Titulo
 import com.lulu.teoremus.view.moduloiii.ModuloIII
@@ -37,6 +38,41 @@ class Cifras : ComponentActivity() {
 @Composable
 private fun Tela() {
 
+    val columnsNotas = 2
+    val titulosNotas = listOf("Nota", "Cifra")
+    val dataNotas = listOf(
+        listOf("Dó", "C"),
+        listOf("Ré", "D"),
+        listOf("Mi", "E"),
+        listOf("Fá", "F"),
+        listOf("Sol", "G"),
+        listOf("Lá", "A"),
+        listOf("Si", "B"),
+        )
+
+    val dataAcordes = listOf(
+        listOf("Maior", "Letra"),
+        listOf("Menor", "Letra + m"),
+        listOf("Maior com sétima maior", "Letra + 7M"),
+        listOf("Maior com sétima menor", "Letra + 7"),
+        listOf("Menor com sétima maior", "Letra + m7M"),
+        listOf("Menor com sétima menor", "Letra + m7"),
+        listOf("Meior-diminuto", "Letra + m7(b5)"),
+        listOf("Diminuto", "Letra + º"),
+    )
+
+
+    val dataExemplo = listOf(
+        listOf("Dó maior", "C"),
+        listOf("Dó menor", "Cm"),
+        listOf("Dó maior com sétima maior", "C7M"),
+        listOf("Dó maior com sétima menor", "C7"),
+        listOf("Dó menor com sétima maior", "Cm7M"),
+        listOf("Dó menor com sétima menor", "Cm7"),
+        listOf("Dó meior-diminuto", "Cm7(b5)"),
+        listOf("Dó diminuto", "Cº"),
+    )
+
     val context = LocalContext.current
     Column(
         modifier = Modifier
@@ -48,22 +84,16 @@ private fun Tela() {
         Titulo(titulo = "Cifras")
 
         Texto(texto = "A cifra é um modo de representar acordes de maneira mais compacta. As notas são:")
-        Texto(texto = "C - dó\nD - ré\nE - mi\nF - fá\nG - sol\nA - Lá\nB - si")
+        Tabela(titulos = titulosNotas, data = dataNotas, columns = columnsNotas)
 
         Subtitulo(titulo = "Classificação")
         Texto(texto = "Elas podem ser classificadas em:")
+        Tabela(titulos = titulosNotas, data = dataAcordes, columns = columnsNotas)
 
-        Texto("Maior: utilizam apenas as letras\nMenor: utilizam as letras + m\nMaior com sétima maior: letra + 7M\nMaior com sétima menor: letra + 7\nMenor com sétima maior: letra + m7M\nMenor com sétima menor: letra + m7\nMeio-diminuto: letra + m(b5)\nDiminuto: letra + º")
 
         Subtitulo(titulo = "Exemplo")
         Texto(texto = "Para o acorde de C, temos:")
-        Texto(texto = "Dó maior - C\nDó menor - Cm\n" +
-                "Dó maior com sétima - C7M\n" +
-                "Dó maior com sétima menor- C7\n" +
-                "Dó menor com sétima - Cm7M\n" +
-                "Dó menor com sétima menor - Cm7\n" +
-                "Dó meio-diminuto - Cm7(b5)" +
-                "Dó diminuto - Cº")
+        Tabela(titulos = titulosNotas, data = dataExemplo, columns = columnsNotas)
 
         Button(
             onClick = {

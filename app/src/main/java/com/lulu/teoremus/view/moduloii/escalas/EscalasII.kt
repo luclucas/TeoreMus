@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
 import com.lulu.teoremus.utils.Subtitulo
 import com.lulu.teoremus.utils.Texto
+import com.lulu.teoremus.view.Imagem
 import com.lulu.teoremus.view.moduloii.ModuloII
 
 class EscalasII : ComponentActivity() {
@@ -50,32 +52,72 @@ private fun Tela() {
     ) {
         Subtitulo(titulo = "Escala Maior")
 
-        Texto(texto = "A escala maior é dada pelos intervalos: T T sT T T T sT. Na imagem abaixo você poderá ver a escala de Dó maior")
+        Texto(texto = "A escala maior é dada pelos intervalos: T T sT T T T sT.")
+
+        Texto(texto = "Na imagem abaixo você poderá ver a escala de Dó maior.")
 
         Image(
             modifier = Modifier
                 .padding(top = 30.dp)
                 .fillMaxWidth()
-                .size(120.dp),
+                .size(120.dp)
+                .clickable {
+                    val activity = (context as? Activity)
+                    val intent = Intent(context, Imagem::class.java)
+                    intent.putExtra("imagem", R.drawable.img_escala_maior)
+
+                    activity?.startActivity(intent)
+                },
             alignment = Alignment.Center,
             painter = painterResource(id = R.drawable.img_escala_maior),
-            contentDescription = "escala c"
+            contentDescription = "Clave"
         )
+
+
+//        Image(
+//            modifier = Modifier
+//                .padding(top = 30.dp)
+//                .fillMaxWidth()
+//                .size(120.dp),
+//            alignment = Alignment.Center,
+//            painter = painterResource(id = R.drawable.img_escala_maior),
+//            contentDescription = "escala c"
+//        )
 
 
         Subtitulo(titulo = "Escala Menor")
-        Texto(texto = "A escala menor é dada pelos intervalos: T sT T T sT T T. Na imagem abaixo você poderá ver a escala de Lá menor.")
+        Texto(texto = "A escala menor é dada pelos intervalos: T sT T T sT T T.")
+
+        Texto(texto = "Na imagem abaixo você verá a escala de Lá menor, tom relativo de Dó maior.")
 
 
         Image(
             modifier = Modifier
                 .padding(top = 30.dp)
                 .fillMaxWidth()
-                .size(120.dp),
+                .size(120.dp)
+                .clickable {
+                    val activity = (context as? Activity)
+                    val intent = Intent(context, Imagem::class.java)
+                    intent.putExtra("imagem", R.drawable.img_escala_menor)
+
+                    activity?.startActivity(intent)
+                },
             alignment = Alignment.Center,
             painter = painterResource(id = R.drawable.img_escala_menor),
-            contentDescription = "escala c"
+            contentDescription = "Clave"
         )
+
+
+//        Image(
+//            modifier = Modifier
+//                .padding(top = 30.dp)
+//                .fillMaxWidth()
+//                .size(120.dp),
+//            alignment = Alignment.Center,
+//            painter = painterResource(id = R.drawable.img_escala_menor),
+//            contentDescription = "escala c"
+//        )
 
         Texto(texto = "Note que as notas em ambas as escalas são as mesmas, o que muda é o tom e a tonalidade, que veremos a seguir.")
 

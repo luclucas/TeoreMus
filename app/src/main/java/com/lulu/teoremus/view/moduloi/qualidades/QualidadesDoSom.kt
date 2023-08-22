@@ -46,7 +46,7 @@ private fun Tela() {
     ) {
 
         Titulo(titulo = "Características do Som")
-        Texto(texto = "As principais características do som são: altura, duração, intensidade e timbre.\n Vamos ver cada uma delas.")
+        Texto(texto = "As principais características do som são: altura, duração, intensidade e timbre.")
 
         Subtitulo(titulo = "Altura")
         Texto(texto = "A altura determina se o som é grave ou agudo, por exemplo, a nota dó pode ser tocada em uma região mais grave ou aguda. Muito cuidado para não confundir com o volume do som.")
@@ -55,12 +55,12 @@ private fun Tela() {
         Texto(texto = "Como o prório nome já sugere, a duração é o tempo em que o som soa.")
 
         Subtitulo(titulo = "Intensidade")
-        Texto(texto = "A intensidade é o volume sonoro. Muitas músicas utilizam desse artifício, tocando trechos com intensidades diferentes")
+        Texto(texto = "A intensidade é o volume sonoro. Muitas músicas utilizam desse artifício tocando trechos com intensidades diferentes, sendo chamado de dinâmica.")
 
         Subtitulo(titulo = "Timbre")
-        Texto(texto = "O timbre é a característica de cada som. Diferentes instrumentos podem tocar a mesma nota, porém cada um manterá suas diferenças")
+        Texto(texto = "O timbre é a característica de cada som. Diferentes instrumentos podem tocar a mesma nota, porém cada um manterá suas diferenças.")
 
-        CaixaDesafio(texto = "Comece a reparar nos sons ao seu redor, os diferentes tipos de barulhos e timbres. Também repare em como as músicas trabalha com as características do som")
+        CaixaDesafio(texto = "Comece a reparar nos sons ao seu redor, os diferentes tipos de barulhos e timbres. Também repare em como as músicas trabalha com as características do som.")
 
 
         Button(

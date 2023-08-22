@@ -14,5 +14,10 @@
     <color name="texto_botao_quiz">#FFFFFF00</color>
     <color name="fundo_para_ouvir">#f6b60d</color>
     <color name="azul_claro">#FF8DE5E9</color>
+    <color name="fundo_login">#FF00A8FF</color>
+    <color name="cinza_icon">#FF7F7F7F</color>
+    <color name="roxo">#FF9C00FF</color>
+    <color name="laranja">#FFFF8B00</color>
+
 
 </resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "902794353989",
+    "project_id": "teoremus",
+    "storage_bucket": "teoremus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902794353989:android:5cfc426ce116b8496bf22c",
+        "android_client_info": {
+          "package_name": "com.lulu.teoremus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902794353989-19ico2l4vamn04u9apd2aqojnfo40n6e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkkumskPDvihL5QeyOhBVGQrYzV4Uq8qw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "902794353989-19ico2l4vamn04u9apd2aqojnfo40n6e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

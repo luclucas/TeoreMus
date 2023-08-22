@@ -20,6 +20,9 @@ class Midias (e: Escolhas? = null, c: Context? = null){
             mp.stop()
     }
 
+    fun stop(){
+        mp.stop()
+    }
     fun start() {
         conferirMP()
         criarMidia()

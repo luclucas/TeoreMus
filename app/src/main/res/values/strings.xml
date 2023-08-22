@@ -3,6 +3,8 @@
     <string name="title_activity_modulo_i">ModuloI</string>
     <string name="title_activity_inicio_i">InicioI</string>
 
+    <string name="clave_sol">𝄞</string>
+
     <!-- Modulo 1 - Inicio    -->
     <string name="inicio1">A música se dá pela combinação ordenada de sons.\n\nSuas principais características são: <b>melodia, harmonia e ritmo.</b></string>
 
@@ -33,4 +35,7 @@
     <string name="title_activity_formacao_acordes2">FormacaoAcordes2</string>
     <string name="title_activity_imagem">Imagem</string>
     <string name="title_activity_campo_harmonico2">CampoHarmonico2</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_criar_conta">CriarConta</string>
+    <string name="title_activity_tela_inicial">TelaInicial</string>
 </resources>

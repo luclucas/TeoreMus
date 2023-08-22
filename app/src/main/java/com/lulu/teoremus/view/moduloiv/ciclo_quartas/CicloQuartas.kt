@@ -26,6 +26,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
+import com.lulu.teoremus.utils.CaixaDesafio
 import com.lulu.teoremus.utils.Texto
 import com.lulu.teoremus.utils.Titulo
 import com.lulu.teoremus.view.Imagem
@@ -77,6 +78,8 @@ private fun Tela() {
             painter = painterResource(id = R.drawable.img_ciclo_quartas),
             contentDescription = "Clave"
         )
+        
+        CaixaDesafio(texto = "Veja quais notas cada tom tem em comum com os outros.")
 
 
         Button(

@@ -51,9 +51,9 @@ private fun Tela() {
 
         Texto(texto = "A pauta ou pentagrama consiste em cinco linhas e quatro espaços onde serão escritas as notas musicais.")
 
-        Texto(texto = "Na pauta, as linhas são contadas de baixo para cima e as notas mais graves ficam nas linhas inferiores e as notas mais agudas nas linhas superiores")
+        Texto(texto = "Na pauta, as linhas são contadas de baixo para cima e as notas mais graves ficam nas linhas inferiores e as notas mais agudas nas linhas superiores.")
 
-        Texto("Na imagem abaixo, você vê um exemplo da pauta ")
+        Texto("Na imagem abaixo, você vê um exemplo da pauta: ")
 
         Image(
             modifier = Modifier

@@ -90,7 +90,7 @@ private fun Tela() {
 
         Subtitulo(titulo = "Partitura")
 
-        Texto(texto = "Outra maneira de representar as notas é por meio das partituras\n" +
+        Texto(texto = "Outra maneira de representar as notas é por meio das partituras.\n" +
                 "Na imagem abaixo, você pode ver um exemplo de como elas são escritas: ")
 
         Image(
@@ -120,10 +120,11 @@ private fun Tela() {
 //            contentDescription = "Escala dó"
 //        )
 
-        CaixaParaOuvir(texto = "Toque no botão abaixo para ouvir a escala de dó maior", midia = midia, escolha = Escolhas.ESCALA_C, context = context)
+        CaixaParaOuvir(texto = "Toque no botão abaixo para ouvir a escala de dó maior.", midia = midia, escolha = Escolhas.ESCALA_C, context = context)
 
         Button(
             onClick = {
+                midia.stop()
                 val activity = (context as? Activity)
                 val i = Intent(context, ModuloI::class.java)
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

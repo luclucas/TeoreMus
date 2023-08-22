@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,6 +32,7 @@ import com.lulu.teoremus.utils.Midias
 import com.lulu.teoremus.utils.Subtitulo
 import com.lulu.teoremus.utils.Texto
 import com.lulu.teoremus.utils.Titulo
+import com.lulu.teoremus.view.Imagem
 
 class Escalas : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,10 +62,10 @@ private fun Tela() {
 
         Texto(texto = "Elas podem ser classificadas pelo número de notas ou pela utilização.")
 
-        Texto(texto = "Pelo número de notas, temos:")
+        Subtitulo(titulo = "Número de notas")
         Texto(texto = "1) 5 notas - pentatônica;\n\n2) 6 notas - hexacordal;\n\n3) 7 notas - heptatônica;\n\n4) 12 notas - cromática.")
 
-        Texto(texto = "Pela utilização, temos: ")
+        Subtitulo(titulo = "Utilização")
         Texto(texto = "1) Escalas naturais ou diatônicas;\n\n2) Escalas artificiais ou cromáticas;\n\n3) Escalas exóticas e outras.")
 
         Subtitulo(titulo = "Escala natural")
@@ -74,11 +76,29 @@ private fun Tela() {
             modifier = Modifier
                 .padding(top = 30.dp)
                 .fillMaxWidth()
-                .size(120.dp),
+                .size(120.dp)
+                .clickable {
+                    val activity = (context as? Activity)
+                    val intent = Intent(context, Imagem::class.java)
+                    intent.putExtra("imagem", R.drawable.img_escala_c_i)
+
+                    activity?.startActivity(intent)
+                },
             alignment = Alignment.Center,
             painter = painterResource(id = R.drawable.img_escala_c_i),
-            contentDescription = "escala c"
+            contentDescription = "Clave"
         )
+
+
+//        Image(
+//            modifier = Modifier
+//                .padding(top = 30.dp)
+//                .fillMaxWidth()
+//                .size(120.dp),
+//            alignment = Alignment.Center,
+//            painter = painterResource(id = R.drawable.img_escala_c_i),
+//            contentDescription = "escala c"
+//        )
 
         CaixaParaOuvir(
             texto = "Ouça a escala de dó maior",
@@ -96,11 +116,29 @@ private fun Tela() {
             modifier = Modifier
                 .padding(top = 30.dp)
                 .fillMaxWidth()
-                .size(120.dp),
+                .size(120.dp)
+                .clickable {
+                    val activity = (context as? Activity)
+                    val intent = Intent(context, Imagem::class.java)
+                    intent.putExtra("imagem", R.drawable.img_escala_cromatica)
+
+                    activity?.startActivity(intent)
+                },
             alignment = Alignment.Center,
             painter = painterResource(id = R.drawable.img_escala_cromatica),
-            contentDescription = "escala c"
+            contentDescription = "Clave"
         )
+
+
+//        Image(
+//            modifier = Modifier
+//                .padding(top = 30.dp)
+//                .fillMaxWidth()
+//                .size(120.dp),
+//            alignment = Alignment.Center,
+//            painter = painterResource(id = R.drawable.img_escala_cromatica),
+//            contentDescription = "escala c"
+//        )
 
         CaixaParaOuvir(
             texto = "Ouça a escala cromática",
@@ -111,10 +149,10 @@ private fun Tela() {
 
 
         Button(onClick = {
+            midia.stop()
             val activity = (context as? Activity)
             val i = Intent(context, EscalasII::class.java)
             activity?.startActivity(i)
-
 
         }, Modifier.padding(30.dp), colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)) {
             Text(text = "Avançar", color = Color.White, fontSize = 20.sp)

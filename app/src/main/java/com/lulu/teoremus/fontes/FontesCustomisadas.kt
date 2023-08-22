@@ -1,18 +1,10 @@
 package com.lulu.teoremus.fontes
 
-import android.content.Context
-import android.content.res.Resources
 import androidx.compose.material.Typography
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import com.lulu.teoremus.R
 
 val lilita = FontFamily(

@@ -72,7 +72,7 @@ private fun Tela() {
 
         Subtitulo(titulo = "Acidentes")
         Texto(texto = "Os acidentes são sinais que alteram as notas, os mais comuns são:")
-        Texto(texto = "Sustenido(#): faz com que a nota suba um tom")
+        Texto(texto = "Sustenido(#): faz com que a nota suba meio tom")
         Texto(texto = "Bemol(♭): faz com que a nota abaixe meio tom")
         
         Texto(texto = "Com os acidentes, obtemos o total de doze notas, sendo elas:")

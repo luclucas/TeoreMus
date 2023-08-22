@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -24,6 +25,7 @@ import com.lulu.teoremus.R
 import com.lulu.teoremus.utils.Subtitulo
 import com.lulu.teoremus.utils.Texto
 import com.lulu.teoremus.utils.Titulo
+import com.lulu.teoremus.view.Imagem
 import com.lulu.teoremus.view.moduloii.ModuloII
 
 class Graus : ComponentActivity() {
@@ -50,16 +52,33 @@ private fun Tela() {
 
         Texto(texto = "Os graus são nomes dados às notas que formam a escala. São numerados por números romanos. Abaixo estão os graus na escala de dó maior, porém os mesmos servem para qualquer tom das escalas diatônicas.")
 
-
         Image(
             modifier = Modifier
                 .padding(top = 30.dp)
                 .fillMaxWidth()
-                .size(120.dp),
+                .size(120.dp)
+                .clickable {
+                    val activity = (context as? Activity)
+                    val intent = Intent(context, Imagem::class.java)
+                    intent.putExtra("imagem", R.drawable.img_graus)
+
+                    activity?.startActivity(intent)
+                },
             alignment = Alignment.Center,
             painter = painterResource(id = R.drawable.img_graus),
-            contentDescription = "escala c"
+            contentDescription = "Clave"
         )
+
+
+//        Image(
+//            modifier = Modifier
+//                .padding(top = 30.dp)
+//                .fillMaxWidth()
+//                .size(120.dp),
+//            alignment = Alignment.Center,
+//            painter = painterResource(id = R.drawable.img_graus),
+//            contentDescription = "escala c"
+//        )
 
         Texto(texto = "Cada grau também recebe um nome, conforme a função que exerce. São eles, respectivamente: ")
 

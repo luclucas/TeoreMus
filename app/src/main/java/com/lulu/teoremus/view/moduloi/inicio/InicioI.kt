@@ -56,7 +56,7 @@ private fun Tela() {
         Texto(texto = stringResource(id = R.string.inicio1))
         Subtitulo(titulo = "Melodia")
         Texto(texto = stringResource(id = R.string.inicio_melodia))
-        Texto(texto = "Na imagem abaixo, você vê um trecho da música \"La vie en rose\", um exemplo de melodia.")
+        Texto(texto = "Na imagem abaixo você vê um trecho da música \"La vie en rose\", um exemplo de melodia.")
 
         Image(
             modifier = Modifier
@@ -75,7 +75,7 @@ private fun Tela() {
             contentDescription = "Clave"
         )
 
-        CaixaParaOuvir(texto = "Tocando no botão abaixo, você ouvirá a melodia da música.", midia = midia, escolha = Escolhas.MELODIA_LA_VIE, context = context)
+        CaixaParaOuvir(texto = "Tocando no botão abaixo você ouvirá a melodia da música.", midia = midia, escolha = Escolhas.MELODIA_LA_VIE, context = context)
 
 //        Texto(texto = "Tocando no botão abaixo, você ouvirá a melodia da música.")
 //
@@ -90,7 +90,7 @@ private fun Tela() {
 
         Subtitulo(titulo = "Harmonia")
 
-        Texto(texto = "A harmonia se dá quando há duas ou mais notas tocadas ao mesmo tempo, por exemplo, um acorde")
+        Texto(texto = "A harmonia se dá quando há duas ou mais notas tocadas ao mesmo tempo. Por exemplo, um acorde.")
 
 
         CaixaParaOuvir(texto = "Tocando no botão abaixo, você ouvirá o acorde de Dó maior.", midia = midia, escolha = Escolhas.C_VIOLAO, context = context)
@@ -104,13 +104,14 @@ private fun Tela() {
 //            context
 //        )
 
-        CaixaDesafio(texto = "Quando escutar uma música, preste atenção nos diferentes instrumentos que estão tocando e em como estão harmonizados")
+        CaixaDesafio(texto = "Quando escutar uma música, preste atenção nos diferentes instrumentos que estão tocando e em como estão harmonizados.")
 
         Subtitulo(titulo = "Ritmo")
 
-        Texto(texto = "O ritmo se dá pela ordem e duração em que estão dispostos os sons e pausas, servindo como marcação")
+        Texto(texto = "O ritmo se dá pela ordem e duração em que estão dispostos os sons e pausas, servindo como marcação.")
 
         Button(onClick = {
+            midia.stop()
             val activity = (context as? Activity)
             val i = Intent(context, ModuloI::class.java)
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
