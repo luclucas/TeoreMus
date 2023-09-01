@@ -23,6 +23,7 @@ import com.lulu.teoremus.view.moduloi.notas.NotasActivity
 import com.lulu.teoremus.view.moduloi.pauta.Pauta
 import com.lulu.teoremus.view.moduloi.qualidades.QualidadesDoSom
 import com.lulu.teoremus.view.moduloi.tom.Tom
+import com.lulu.teoremus.view.quiz.Quiz
 
 val listaNomes = listOf(
     "Início", "O Som", "Notas", "Pauta", "Clave de Sol",
@@ -91,8 +92,12 @@ private fun BotoesAula(nome: String, i: Int) {
 
 @Composable
 private fun BotaoQuiz() {
+    val context = LocalContext.current
     Button(
-        onClick = {}, modifier = Modifier
+        onClick = {
+                  context.startActivity(Intent(context, Quiz::class.java))
+        },
+        modifier = Modifier
             .height(120.dp)
             .fillMaxWidth()
             .padding(20.dp),

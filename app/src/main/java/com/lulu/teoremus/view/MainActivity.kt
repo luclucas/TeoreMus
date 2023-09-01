@@ -49,7 +49,7 @@ class MainActivity : ComponentActivity() {
 
 @Preview(showSystemUi = true)
 @Composable
-fun Tela() {
+private fun Tela() {
     Column() {
         for (i in listaNomes.indices) {
             CardModulo(imagem = listaImagens[i], titulo = listaNomes[i], listaTelas[i])
