@@ -15,6 +15,11 @@
         android:theme="@style/Theme.TeoreMus"
         tools:targetApi="31">
         <activity
+            android:name=".view.quiz.ResultadoQuiz"
+            android:exported="false"
+            android:label="@string/title_activity_resultado_quiz"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
             android:name=".view.quiz.Quiz"
             android:exported="false"
             android:label="@string/title_activity_quiz"
@@ -35,7 +40,7 @@
             android:theme="@style/Theme.TeoreMus" />
         <activity
             android:name=".view.login.Login"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".view.moduloiv.campo_harmonico.CampoHarmonico2"
             android:exported="false"

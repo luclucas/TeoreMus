@@ -39,4 +39,5 @@
     <string name="title_activity_criar_conta">CriarConta</string>
     <string name="title_activity_tela_inicial">TelaInicial</string>
     <string name="title_activity_quiz">Quiz</string>
+    <string name="title_activity_resultado_quiz">ResultadoQuiz</string>
 </resources>
