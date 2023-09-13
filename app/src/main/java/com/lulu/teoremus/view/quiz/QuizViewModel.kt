@@ -11,10 +11,11 @@ import com.lulu.teoremus.model.Questao
 
 class QuizViewModel : ViewModel() {
 
+    val categoriaQuestoes by mutableStateOf(mutableSetOf(""))
     val questoes = MutableLiveData<MutableList<Questao>>()
-    val cont = MutableLiveData<Int>(0)
+    val cont = MutableLiveData(0)
 
-    val questoesCorretas = MutableLiveData<Int>(0)
+    val questoesCorretas = MutableLiveData(0)
 
     var questao by mutableStateOf<String?>(" ")
     var resposta by mutableStateOf<String?>("")
@@ -33,26 +34,38 @@ class QuizViewModel : ViewModel() {
     }
 
     fun getQuestoes() {
-     //   Log.d("lulutag", questoes.value.toString())
-        if (!questoes.value.isNullOrEmpty()) {
-            questao = questoes.value!![cont.value!!].questao
-            resposta = questoes.value!![cont.value!!].resposta
-            opcaoA = questoes.value!![cont.value!!].opcao_a
-            opcaoB = questoes.value!![cont.value!!].opcao_b
-            opcaoC = questoes.value!![cont.value!!].opcao_c
-            opcaoD = questoes.value!![cont.value!!].opcao_d
-            categoria = questoes.value!![cont.value!!].categoria
-            imagem = questoes.value!![cont.value!!].imagem
+        //   Log.d("lulutag", questoes.value.toString())
+
+        if(cont.value!! < 10) {
+            if (!questoes.value.isNullOrEmpty()) {
+                questao = questoes.value!![cont.value!!].questao
+                resposta = questoes.value!![cont.value!!].resposta
+                opcaoA = questoes.value!![cont.value!!].opcao_a
+                opcaoB = questoes.value!![cont.value!!].opcao_b
+                opcaoC = questoes.value!![cont.value!!].opcao_c
+                opcaoD = questoes.value!![cont.value!!].opcao_d
+                categoria = questoes.value!![cont.value!!].categoria
+                imagem = questoes.value!![cont.value!!].imagem
+            }
         }
     }
 
     fun incrementarCont() {
-        val a = cont.value!! + 1
-        cont.value = a
+            val a = cont.value!! + 1
+            cont.value = a
     }
 
-    fun incrementarQuestoesCorretas(){
+    fun incrementarQuestoesCorretas() {
         val a = questoesCorretas.value!! + 1
         questoesCorretas.value = a
+    }
+
+    fun conferirResposta(opcao: String, resposta: String) {
+        if (opcao == resposta) {
+            incrementarQuestoesCorretas()
+            Log.d("lulutag", "questoes corretas = ${questoesCorretas.value}")
+        } else{
+            categoriaQuestoes.add(categoria!!)
+        }
     }
 }

@@ -1,35 +1,29 @@
 package com.lulu.teoremus.view.quiz
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import coil.ImageLoader
 import coil.compose.AsyncImage
-import coil.compose.rememberImagePainter
-import coil.request.ImageRequest
-
 import com.lulu.teoremus.R
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,7 +38,7 @@ class Quiz : ComponentActivity() {
         //   quizViewModel.showQuestions()
 
         setContent {
-            Tela(quizViewModel, this)
+            Tela(quizViewModel)
         }
     }
 
@@ -68,18 +62,28 @@ class Quiz : ComponentActivity() {
 
 //@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-private fun Tela(viewModel: QuizViewModel, lifecycleOwner: LifecycleOwner) {
+private fun Tela(viewModel: QuizViewModel ) {
     viewModel.getQuestoes()
-    val context = LocalContext.current
-    var opcaoA = viewModel.opcaoA
-    var opcaoB = viewModel.opcaoB
-    var opcaoC = viewModel.opcaoC
-    var opcaoD = viewModel.opcaoD
+    val context = LocalContext.current as Activity
+    val opcaoA = viewModel.opcaoA
+    val opcaoB = viewModel.opcaoB
+    val opcaoC = viewModel.opcaoC
+    val opcaoD = viewModel.opcaoD
     var resposta = viewModel.resposta
-    var cont = remember{ mutableStateOf(1) }
+    val cont = remember{ mutableStateOf(1) }
 
-    var imagem = viewModel.imagem
-    var questao = viewModel.questao
+    val imagem = viewModel.imagem
+    val questao = viewModel.questao
+
+
+    if (cont.value > 10) {
+        val i = Intent(context, ResultadoQuiz::class.java).apply{
+            putExtra("questoes_corretas", viewModel.questoesCorretas.value)
+            putExtra("lista_categorias", ArrayList(viewModel.categoriaQuestoes))
+        }
+        context.startActivity(i)
+        context.finish()
+    }
 
 
     Column(
@@ -106,15 +110,16 @@ private fun Tela(viewModel: QuizViewModel, lifecycleOwner: LifecycleOwner) {
         CaixaAlternativa(texto = opcaoA, onClick = {
             viewModel.incrementarCont()
             cont.value++
-            conferirResposta(opcaoA!!, resposta!!, viewModel)
-           // viewModel.getQuestoes()
+            viewModel.conferirResposta(opcaoA!!, resposta!!)
+
+            // viewModel.getQuestoes()
         })
 
 
 
         CaixaAlternativa(texto = opcaoB, onClick = {
             viewModel.incrementarCont()
-            conferirResposta(opcaoB!!, resposta!!, viewModel)
+            viewModel.conferirResposta(opcaoB!!,resposta!!)
             cont.value++
             // viewModel.getQuestoes()
         })
@@ -123,24 +128,18 @@ private fun Tela(viewModel: QuizViewModel, lifecycleOwner: LifecycleOwner) {
             onClick = {
                 viewModel.incrementarCont()
                 cont.value++
-                conferirResposta(opcaoC!!, resposta!!, viewModel)
+                viewModel.conferirResposta(opcaoC!!, resposta!!)
                 //  viewModel.getQuestoes()
             })
 
         CaixaAlternativa(texto = opcaoD,
             onClick = {
                 viewModel.incrementarCont()
+                viewModel.conferirResposta(opcaoD!!, resposta!!)
                 cont.value++
-                conferirResposta(opcaoD!!, resposta!!, viewModel)
                 //viewModel.getQuestoes()
             })
 
 
-    }
-}
-private fun conferirResposta(opcao: String, resposta: String, viewModel: QuizViewModel){
-    if (opcao.equals(resposta)){
-        viewModel.incrementarQuestoesCorretas()
-        Log.d("lulutag", "${viewModel.questoesCorretas.value}")
     }
 }
