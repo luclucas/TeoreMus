@@ -52,12 +52,15 @@ class QuizViewModel : ViewModel() {
 
     fun incrementarCont() {
             val a = cont.value!! + 1
-            cont.value = a
-    }
+                cont.value = a
+            }
+
 
     fun incrementarQuestoesCorretas() {
+
         val a = questoesCorretas.value!! + 1
         questoesCorretas.value = a
+
     }
 
     fun conferirResposta(opcao: String, resposta: String) {

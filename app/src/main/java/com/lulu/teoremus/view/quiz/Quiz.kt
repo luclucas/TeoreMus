@@ -3,7 +3,6 @@ package com.lulu.teoremus.view.quiz
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -69,12 +68,15 @@ private fun Tela(viewModel: QuizViewModel ) {
     val opcaoB = viewModel.opcaoB
     val opcaoC = viewModel.opcaoC
     val opcaoD = viewModel.opcaoD
-    var resposta = viewModel.resposta
+    val resposta = viewModel.resposta
     val cont = remember{ mutableStateOf(1) }
+
+    val textoCont = remember{
+        mutableStateOf(cont.value.toString())
+    }
 
     val imagem = viewModel.imagem
     val questao = viewModel.questao
-
 
     if (cont.value > 10) {
         val i = Intent(context, ResultadoQuiz::class.java).apply{
@@ -95,7 +97,7 @@ private fun Tela(viewModel: QuizViewModel ) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        TextoQuestao("${cont.value} / 10")
+        TextoQuestao("${textoCont.value} / 10")
 
         TextoQuestao(questao)
 
@@ -109,10 +111,11 @@ private fun Tela(viewModel: QuizViewModel ) {
 
         CaixaAlternativa(texto = opcaoA, onClick = {
             viewModel.incrementarCont()
-            cont.value++
             viewModel.conferirResposta(opcaoA!!, resposta!!)
-
-            // viewModel.getQuestoes()
+            cont.value++
+            if(cont.value <= 10) {
+                textoCont.value = cont.value.toString()
+            }
         })
 
 
@@ -121,15 +124,20 @@ private fun Tela(viewModel: QuizViewModel ) {
             viewModel.incrementarCont()
             viewModel.conferirResposta(opcaoB!!,resposta!!)
             cont.value++
-            // viewModel.getQuestoes()
+            if(cont.value <= 10) {
+                textoCont.value = cont.value.toString()
+            }
+
         })
 
         CaixaAlternativa(texto = opcaoC,
             onClick = {
                 viewModel.incrementarCont()
-                cont.value++
                 viewModel.conferirResposta(opcaoC!!, resposta!!)
-                //  viewModel.getQuestoes()
+                cont.value++
+                if(cont.value <= 10) {
+                    textoCont.value = cont.value.toString()
+                }
             })
 
         CaixaAlternativa(texto = opcaoD,
@@ -137,9 +145,12 @@ private fun Tela(viewModel: QuizViewModel ) {
                 viewModel.incrementarCont()
                 viewModel.conferirResposta(opcaoD!!, resposta!!)
                 cont.value++
-                //viewModel.getQuestoes()
+                if(cont.value <= 10) {
+                    textoCont.value = cont.value.toString()
+                }
             })
 
 
     }
 }
+

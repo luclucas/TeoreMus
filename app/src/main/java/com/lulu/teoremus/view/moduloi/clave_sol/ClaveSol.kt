@@ -26,6 +26,7 @@ import com.lulu.teoremus.R
 import com.lulu.teoremus.utils.Texto
 import com.lulu.teoremus.utils.Titulo
 import com.lulu.teoremus.view.Imagem
+import com.lulu.teoremus.view.moduloi.ModuloI
 
 class ClaveSol : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,12 +86,15 @@ private fun Tela() {
 
         Button(onClick = {
             val activity = (context as? Activity)
-            val i = Intent(context, ClaveSolExercicio::class.java)
+            val i = Intent(context, ModuloI::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            }
             activity?.startActivity(i)
+            activity?.finish()
 
 
         }, Modifier.padding(30.dp), colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)) {
-            Text(text = "Avançar", color = Color.White, fontSize = 20.sp)
+            Text(text = "Finalizar", color = Color.White, fontSize = 20.sp)
         }
 
     }

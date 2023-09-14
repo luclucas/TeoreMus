@@ -26,7 +26,7 @@ import com.lulu.teoremus.view.moduloi.tom.Tom
 import com.lulu.teoremus.view.quiz.Quiz
 
 val listaNomes = listOf(
-    "Início", "O Som", "Notas", "Pauta", "Clave de Sol",
+    "A música", "O som", "Notas", "Pauta", "Clave de sol",
     "Semitom e tom",
     //"Durações"
 )
@@ -60,13 +60,9 @@ private fun CriarBotoes() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         for (i in listaNomes.indices step 2) {
-            var isRow = true
-            if (isRow) {
-                Row() {
+                Row{
                     BotoesAula(nome = listaNomes[i], i)
                     BotoesAula(nome = listaNomes[i + 1], i + 1)
-                    isRow = false
-                }
             }
         }
         BotaoQuiz()
