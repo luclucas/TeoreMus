@@ -83,11 +83,14 @@ private fun Tela() {
     ) {
         Titulo(titulo = "Cifras")
 
-        Texto(texto = "A cifra é um modo de representar acordes de maneira mais compacta. As notas são:")
+        Texto(texto = "A cifra é um modo de representar acordes de maneira mais compacta e são escritas do seguinte modo:")
         Tabela(titulos = titulosNotas, data = dataNotas, columns = columnsNotas)
 
-        Subtitulo(titulo = "Classificação")
-        Texto(texto = "Elas podem ser classificadas em:")
+
+        Texto(texto = "Cuidado para não confundir com a escrita das notas. Embora as letras sejam as mesmas, a cifra só serve para representar acordes.")
+
+        Subtitulo(titulo = "Representação")
+        Texto(texto = "Abaixo estão algumas representações de cifras.")
         Tabela(titulos = titulosNotas, data = dataAcordes, columns = columnsNotas)
 
 

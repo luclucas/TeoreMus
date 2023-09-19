@@ -15,6 +15,11 @@
         android:theme="@style/Theme.TeoreMus"
         tools:targetApi="31">
         <activity
+            android:name=".view.moduloiii.acordes.AcordesII"
+            android:exported="false"
+            android:label="@string/title_activity_acordes_ii"
+            android:theme="@style/Theme.TeoreMus" />
+        <activity
             android:name=".view.quiz.ResultadoQuiz"
             android:exported="false"
             android:label="@string/title_activity_resultado_quiz"

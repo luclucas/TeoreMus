@@ -1,4 +1,4 @@
-package com.lulu.teoremus.view.moduloiii.triades
+package com.lulu.teoremus.view.moduloiii.acordes
 
 import android.app.Activity
 import android.content.Intent
@@ -12,34 +12,36 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.lulu.teoremus.enums.Escolhas
+import com.lulu.teoremus.utils.CaixaParaOuvir
+import com.lulu.teoremus.utils.Midias
 import com.lulu.teoremus.utils.Subtitulo
 import com.lulu.teoremus.utils.Texto
-import com.lulu.teoremus.utils.Titulo
 import com.lulu.teoremus.view.moduloiii.ModuloIII
 
-class Triades : ComponentActivity() {
+class AcordesII : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Tela()
+
         }
     }
 }
 
 @Composable
 private fun Tela() {
+
+    val midia = Midias()
     val context = LocalContext.current
+
     Column(
         modifier = Modifier
             .padding(20.dp)
@@ -47,31 +49,32 @@ private fun Tela() {
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Titulo(titulo = "Tríades")
+        Subtitulo(titulo = "Quinta")
 
-        Texto(texto = "Na aula anterior vimos os acordes naturais, formadas pela tônica, terça e quinta. Esses acordes são chamados de tríades, formados por duas terças consecutivas. Veremos como elas são classificadas.")
+        Texto(texto = "Tomando como base a quinta, os acordes são classificados em normais, aumentados e diminutos.")
 
-        Subtitulo(titulo = "Maior")
-        Texto(texto = "Formados por: 1ª - 3ª maior - 5ª justa")
+        Subtitulo(titulo = "Normais")
 
-        Subtitulo(titulo = "Menor")
-        Texto(texto = "Formados por: 1ª - 3ª menor - 5ª justa")
+        Texto(texto = "Os acordes maiores utilizam a quinta justa, ou seja, 3 tons e meio de distância da tônica para a quinta. Exemplo, C e G")
 
+        Subtitulo(titulo = "Aumentados")
 
-        Subtitulo(titulo = "Suspenso")
-        Texto(texto = "Formados por: 1ª - 2ª ou 4ª - 5ª justa")
+        Texto(texto = "Os acordes aumentados têm a quinta aumentada, ou seja, eleva-se em meio tom a quinta. Exemplo, C e G#")
 
+        Subtitulo(titulo = "Diminutos")
 
-        Subtitulo(titulo = "Aumentada")
-        Texto(texto = "Formados por: 1ª - 3ª maior - 5ª aumentada")
+        Texto(texto = "Os acordes com a quinta diminuta possuem ela meio tom abaixo. Por exemplo, C e Gb. Geralmente são utilizados em acordes diminutos ou meio diminutos, veremos esse conteúdo mais para frente")
 
-
-        Subtitulo(titulo = "Diminuto")
-        Texto(texto = "Formados por: 1ª - 3ª menor - 5ª diminuta")
-
+        CaixaParaOuvir(
+            texto = "No botão abaixo você verá a diferença entre acorde maior, menor, sus2 e sus4",
+            midia = midia,
+            escolha = Escolhas.ACORDE_NORMAL_AUMENTADO_DIMINUTO,
+            context = context
+        )
 
         Button(
             onClick = {
+                midia.stop()
                 val activity = (context as? Activity)
                 val i = Intent(context, ModuloIII::class.java)
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -82,8 +85,7 @@ private fun Tela() {
             Modifier.padding(30.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
         ) {
-            androidx.compose.material.Text(text = "Finalizar", color = Color.White, fontSize = 20.sp)
+            Text(text = "Finalizar", color = Color.White, fontSize = 20.sp)
         }
     }
 }
-

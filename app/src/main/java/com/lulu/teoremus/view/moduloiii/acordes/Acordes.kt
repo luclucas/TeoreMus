@@ -27,7 +27,6 @@ import com.lulu.teoremus.utils.Midias
 import com.lulu.teoremus.utils.Subtitulo
 import com.lulu.teoremus.utils.Texto
 import com.lulu.teoremus.utils.Titulo
-import com.lulu.teoremus.view.moduloiii.ModuloIII
 
 class Acordes : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,14 +52,20 @@ private fun Tela() {
     ) {
         Titulo(titulo = "Acordes")
         
-        Texto(texto = "Um acorde se dá pela combinação de três ou mais sons diferentes ao mesmo tempo.\n\nA combinação de dois sons é chamada de intervalo. Caso haja alguma dúvida, olhe o módulo anterior.")
+        Texto(texto = "Um acorde se dá pela combinação de três ou mais sons diferentes ao mesmo tempo. A formação básica é tônica, terça e quinta.")
         
         
-        Texto(texto = "Geralmente, a criação dos acordes é feita a partir do campo harmônico, por exemplo, pegando o campo harmônico de C maior, temos as notas C, D, E, F, G, A e B.")
+        Texto(texto = "Geralmente, a criação dos acordes é feita a partir do campo harmônico, por exemplo, pegando o campo harmônico de C maior, temos as notas C, D, E, F, G, A e B. E o acorde de C é formado por: ")
+
+        Texto(texto = "Tônica: C\nTerça: E\n Quinta: G")
         
         Subtitulo(titulo = "Classificação dos acordes")
         
-        Texto(texto = "Os acordes naturais são formados pela tônica, terça e quinta, e podem ser classificados em maior, menor e suspenso. Vamos analisar cada um deles.")
+        Texto(texto = "Os acordes podem ser classificados de diferentes modos, aqui analisaremos de acordo com a sua terça e com sua quinta.")
+
+        Subtitulo(titulo = "Terça")
+
+        Texto(texto = "Tomando como base a terça, os acordes são classificados em maiores, menores e suspensos.")
         
         Subtitulo(titulo = "Maiores")
 
@@ -74,22 +79,17 @@ private fun Tela() {
 
         Texto(texto ="Os acordes suspensos não possuem terça, sendo esta substituída pela segunda ou pela quarta. Por exemplo, Csus2 é formado por C D G e Csus4, por C F G.")
         
-        CaixaParaOuvir(texto = "No botão abaixo você verá a diferença entre acorde maior, menor, e suspenso", midia = midia, escolha = Escolhas.ACORDE_MAIOR_MENOR_SUS, context = context)
+        CaixaParaOuvir(texto = "No botão abaixo você verá a diferença entre acorde maior, menor, sus2 e sus4", midia = midia, escolha = Escolhas.ACORDE_MAIOR_MENOR_SUS, context = context)
 
-        Button(
-            onClick = {
-                midia.stop()
-                val activity = (context as? Activity)
-                val i = Intent(context, ModuloIII::class.java)
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                activity?.startActivity(i)
-                activity?.finish()
 
-            },
-            Modifier.padding(30.dp),
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
-        ) {
-            Text(text = "Finalizar", color = Color.White, fontSize = 20.sp)
+        Button(onClick = {
+            midia.stop()
+            val activity = (context as? Activity)
+            val i = Intent(context, AcordesII::class.java)
+            activity?.startActivity(i)
+
+        }, Modifier.padding(30.dp), colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)) {
+            Text(text = "Avançar", color = Color.White, fontSize = 20.sp)
         }
 
         

@@ -8,5 +8,6 @@ enum class Escolhas(val som: Int) {
      ESCALA_C(R.raw.escala_c),
      ESCALA_CROMATICA(R.raw.escala_cromatica),
      ACORDE_MAIOR_MENOR_SUS(R.raw.acorde_maior_menor_sus),
+     ACORDE_NORMAL_AUMENTADO_DIMINUTO(R.raw.acorde_nor_aum_dim),
      FORMACAO_ACORDES(R.raw.formacao_acordes)
 }

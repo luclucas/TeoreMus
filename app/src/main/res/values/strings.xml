@@ -40,4 +40,5 @@
     <string name="title_activity_tela_inicial">TelaInicial</string>
     <string name="title_activity_quiz">Quiz</string>
     <string name="title_activity_resultado_quiz">ResultadoQuiz</string>
+    <string name="title_activity_acordes_ii">AcordesII</string>
 </resources>
