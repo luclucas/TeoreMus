@@ -69,7 +69,6 @@ private fun Tela(viewModel: AuthViewModel = hiltViewModel()) {
     var senha by remember { mutableStateOf("") }
     var confirmarSenha by remember { mutableStateOf("") }
     var nome by remember { mutableStateOf("") }
-    var nickname by remember { mutableStateOf("") }
 
     val criarContaFlow = viewModel.criarContaFlow.collectAsState()
 
@@ -132,9 +131,6 @@ private fun Tela(viewModel: AuthViewModel = hiltViewModel()) {
                     nome = it
                 }, R.drawable.icn_pessoa, "nome completo", keyboardType = KeyboardType.Text)
 
-                CampoLogin(value = nickname, label = "Apelido", onValueChange = {
-                    nickname = it
-                }, R.drawable.icn_pessoa, "Digite um apelido",  keyboardType = KeyboardType.Text)
 
                 CampoLogin(value = email, label = "E-mail", onValueChange = {
                     email = it
@@ -158,7 +154,7 @@ private fun Tela(viewModel: AuthViewModel = hiltViewModel()) {
 
                Button(
                     onClick = {
-                        viewModel.criarConta(nome, nickname,email, senha)
+                        viewModel.criarConta(nome,email, senha, context)
                     },
                    Modifier
                        .padding(top = 40.dp)

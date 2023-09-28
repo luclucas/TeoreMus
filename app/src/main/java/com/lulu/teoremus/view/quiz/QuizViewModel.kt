@@ -9,9 +9,10 @@ import androidx.lifecycle.ViewModel
 import com.lulu.teoremus.data.QuestoesRepositoryImpl
 import com.lulu.teoremus.model.Questao
 
-class QuizViewModel : ViewModel() {
+class QuizViewModel constructor(private val document: String) : ViewModel() {
 
     val categoriaQuestoes by mutableStateOf(mutableSetOf(""))
+    val questoesErradas by mutableStateOf(mutableListOf(""))
     val questoes = MutableLiveData<MutableList<Questao>>()
     val cont = MutableLiveData(0)
 
@@ -29,7 +30,7 @@ class QuizViewModel : ViewModel() {
 
 
     init {
-        QuestoesRepositoryImpl().getQuestoes(questoes)
+        QuestoesRepositoryImpl(document).getQuestoes(questoes)
 
     }
 
@@ -68,6 +69,8 @@ class QuizViewModel : ViewModel() {
             incrementarQuestoesCorretas()
             Log.d("lulutag", "questoes corretas = ${questoesCorretas.value}")
         } else{
+            val a = cont.value!!
+            questoesErradas.add(a.toString())
             categoriaQuestoes.add(categoria!!)
         }
     }

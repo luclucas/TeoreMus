@@ -17,6 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
+import com.lulu.teoremus.utils.MODULO_I
 import com.lulu.teoremus.view.moduloi.clave_sol.ClaveSol
 import com.lulu.teoremus.view.moduloi.inicio.InicioI
 import com.lulu.teoremus.view.moduloi.notas.NotasActivity
@@ -91,7 +92,11 @@ private fun BotaoQuiz() {
     val context = LocalContext.current
     Button(
         onClick = {
-                  context.startActivity(Intent(context, Quiz::class.java))
+            val i = Intent(context, Quiz::class.java).apply {
+                putExtra("document", MODULO_I)
+                putExtra("modulo", "moduloI")
+            }
+                  context.startActivity(i)
         },
         modifier = Modifier
             .height(120.dp)

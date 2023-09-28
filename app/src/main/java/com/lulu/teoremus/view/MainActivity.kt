@@ -1,12 +1,18 @@
 package com.lulu.teoremus.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,10 +22,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModelProvider
+import com.gowtham.ratingbar.RatingBar
 import com.lulu.teoremus.R
+import com.lulu.teoremus.utils.SHARED_USER_KEY
 import com.lulu.teoremus.view.moduloi.ModuloI
 import com.lulu.teoremus.view.moduloii.ModuloII
 import com.lulu.teoremus.view.moduloiii.ModuloIII
@@ -39,27 +47,47 @@ val listaTelas =
     listOf(ModuloI::class.java, ModuloII::class.java, ModuloIII::class.java, ModuloIV::class.java)
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var viewModel: MainActivityViewModel
+    private val listaPontosModulos = mutableListOf<Int>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
+
+
+        val preferences = getSharedPreferences(SHARED_USER_KEY, Context.MODE_PRIVATE)
+        listaPontosModulos.add(preferences.getInt("moduloI", 0))
+        listaPontosModulos.add(preferences.getInt("moduloII", 0))
+        listaPontosModulos.add(preferences.getInt("moduloIII", 0))
+        listaPontosModulos.add(preferences.getInt("moduloIV", 0))
+
+
+
         setContent {
-            Tela()
+            Tela(viewModel, listaPontosModulos)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
     }
 }
 
-@Preview(showSystemUi = true)
+
 @Composable
-private fun Tela() {
+private fun Tela(viewModel: MainActivityViewModel, list: MutableList<Int>) {
+    Log.d("lulutag", "user = ${viewModel.user.value}")
     Column() {
         for (i in listaNomes.indices) {
-            CardModulo(imagem = listaImagens[i], titulo = listaNomes[i], listaTelas[i])
+            CardModulo(imagem = listaImagens[i], titulo = listaNomes[i], listaTelas[i], list[i])
         }
 
     }
 }
 
 @Composable
-fun CardModulo(imagem: Int, titulo: String, tela: Class<out ComponentActivity>) {
+fun CardModulo(imagem: Int, titulo: String, tela: Class<out ComponentActivity>, pontos: Int) {
     val context = LocalContext.current
     Card(
         Modifier
@@ -67,7 +95,8 @@ fun CardModulo(imagem: Int, titulo: String, tela: Class<out ComponentActivity>) 
             .fillMaxWidth()
             .clickable {
                 context.startActivity(Intent(context, tela))
-            }, backgroundColor = colorResource(id = R.color.card_tela_principal)) {
+            }, backgroundColor = colorResource(id = R.color.card_tela_principal)
+    ) {
 
         Row(modifier = Modifier.padding(10.dp), verticalAlignment = Alignment.CenterVertically) {
 
@@ -78,12 +107,24 @@ fun CardModulo(imagem: Int, titulo: String, tela: Class<out ComponentActivity>) 
             )
 
             Column(
-                modifier = Modifier.fillMaxWidth(),
+                Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
                 Text(text = titulo, color = Color.Yellow, fontSize = 30.sp)
-                Text(text = "Descrição do módulo", color = Color.White, fontSize = 20.sp)
+
+
+                RatingBar(
+                    value = pontos.toFloat(),
+                    painterEmpty = painterResource(id = R.drawable.pontos_vazio_branco),
+                    painterFilled = painterResource(id = R.drawable.pontos_cheio),
+                    onValueChange = {},
+                    numOfStars = 3,
+                    size = 24.dp,
+                    spaceBetween = 0.4.dp,
+                    onRatingChanged = {},
+                    modifier = Modifier.padding(top = 5.dp)
+                )
             }
         }
     }

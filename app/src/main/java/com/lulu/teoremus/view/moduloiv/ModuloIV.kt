@@ -24,10 +24,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
+import com.lulu.teoremus.utils.MODULO_IV
 import com.lulu.teoremus.view.moduloiv.campo_harmonico.CampoHarmonico
 import com.lulu.teoremus.view.moduloiv.ciclo_quartas.CicloQuartas
 import com.lulu.teoremus.view.moduloiv.ciclo_quintas.CicloQuintas
 import com.lulu.teoremus.view.moduloiv.formacao_acordes.FormacaoAcordes
+import com.lulu.teoremus.view.quiz.Quiz
 
 class ModuloIV : ComponentActivity() {
 
@@ -97,8 +99,15 @@ private fun BotoesAula(nome: String, i: Int, listaActivity: List<Class<out Compo
 
 @Composable
 private fun BotaoQuiz() {
+    val context = LocalContext.current
     Button(
-        onClick = {}, modifier = Modifier
+        onClick = {
+            val i = Intent(context, Quiz::class.java).apply {
+                putExtra("document", MODULO_IV)
+                putExtra("modulo", "moduloIV")
+            }
+            context.startActivity(i)
+        }, modifier = Modifier
             .height(120.dp)
             .fillMaxWidth()
             .padding(20.dp),

@@ -1,7 +1,6 @@
 package com.lulu.teoremus.di
 
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthProvider
 import com.lulu.teoremus.data.AuthRepository
 import com.lulu.teoremus.data.AuthRepositoryImpl
 import dagger.Module

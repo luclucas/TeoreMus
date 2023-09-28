@@ -142,17 +142,18 @@ fun TextoParabens(context: Context) {
 }
 
 @Composable
-fun ConteudosRevisao(categorias: ArrayList<String>) {
+fun ConteudosRevisao(texto: String, categorias: ArrayList<String>) {
 
     Column(
         Modifier
+            .padding(20.dp)
             .clip(shape = RoundedCornerShape(20.dp))
             .fillMaxWidth()
             .background(color = Color.White),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Para revisar",
+            text = texto,
             fontSize = 30.sp,
             color = colorResource(id = R.color.card_tela_principal),
             fontFamily = heebo

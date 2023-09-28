@@ -45,7 +45,7 @@ class TelaInicial : ComponentActivity() {
 private fun Tela(viewModel: AuthViewModel = hiltViewModel()){
     val context = LocalContext.current as Activity
 
-   // viewModel.logout()
+    viewModel.logout()
 
     val userFlow: FirebaseUser? = viewModel.currentUser
     if (userFlow != null){

@@ -32,12 +32,18 @@ class Quiz : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        quizViewModel = ViewModelProvider(this)[QuizViewModel::class.java]
+        val modulo = intent.getStringExtra("modulo")
+
+        val document = intent.getStringExtra("document")
+        val quizViewModelFactory = QuizViewModelFactory(document!!)
+        quizViewModel = ViewModelProvider(this, quizViewModelFactory)[QuizViewModel::class.java]
         quizViewModel.getQuestoes()
         //   quizViewModel.showQuestions()
 
+
+
         setContent {
-            Tela(quizViewModel)
+            Tela(quizViewModel, modulo!!)
         }
     }
 
@@ -61,7 +67,7 @@ class Quiz : ComponentActivity() {
 
 //@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-private fun Tela(viewModel: QuizViewModel ) {
+private fun Tela(viewModel: QuizViewModel, modulo: String ) {
     viewModel.getQuestoes()
     val context = LocalContext.current as Activity
     val opcaoA = viewModel.opcaoA
@@ -82,6 +88,8 @@ private fun Tela(viewModel: QuizViewModel ) {
         val i = Intent(context, ResultadoQuiz::class.java).apply{
             putExtra("questoes_corretas", viewModel.questoesCorretas.value)
             putExtra("lista_categorias", ArrayList(viewModel.categoriaQuestoes))
+            putExtra("questoes_erradas", ArrayList(viewModel.questoesErradas))
+            putExtra("modulo", modulo)
         }
         context.startActivity(i)
         context.finish()
