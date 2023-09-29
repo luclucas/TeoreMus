@@ -31,9 +31,9 @@ class AuthViewModel @Inject constructor(private val repository: AuthRepository) 
         }
     }
 
-    fun login(email: String, senha: String) = viewModelScope.launch {
+    fun login(email: String, senha: String, context: Context) = viewModelScope.launch {
         _loginFlow.value = Resource.Loading
-        val result = repository.login(email, senha)
+        val result = repository.login(email, senha, context)
         _loginFlow.value = result
     }
 

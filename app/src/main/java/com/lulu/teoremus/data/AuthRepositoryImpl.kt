@@ -6,7 +6,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
+import com.lulu.teoremus.model.User
 import com.lulu.teoremus.utils.SHARED_USER_KEY
+import com.lulu.teoremus.utils.SharedPreferencesUtil
 import com.lulu.teoremus.utils.await
 import javax.inject.Inject
 
@@ -16,14 +18,36 @@ class AuthRepositoryImpl @Inject constructor(
     override val currentUser: FirebaseUser?
         get() = firebaseAuth.currentUser
 
-    override suspend fun login(email: String, senha: String): Resource<FirebaseUser> {
+    override suspend fun login(
+        email: String,
+        senha: String,
+        context: Context
+    ): Resource<FirebaseUser> {
         return try {
+
             val result = firebaseAuth.signInWithEmailAndPassword(email, senha).await()
+
+            val userId = firebaseAuth.currentUser!!.uid
+            val db = FirebaseFirestore.getInstance()
+            val userRef = db.collection("Usuarios").document(userId).get().addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val document = it.result
+                    if (document.exists()) {
+                        val user = document.toObject(User::class.java)
+                        SharedPreferencesUtil.savePreferences(context, user!!)
+                    }
+                }
+            }
+
+            Log.d("lulutag", "${userRef.await()}")
+
+
             Resource.Success(result.user!!)
         } catch (e: Exception) {
             e.printStackTrace()
             Resource.Failure(e)
         }
+
 
     }
 
@@ -53,12 +77,13 @@ class AuthRepositoryImpl @Inject constructor(
                         Log.d("lulutag", "Sucesso para o usuario: $userId")
                     }
 
-                    val sharedPreferences = context.getSharedPreferences(SHARED_USER_KEY, Context.MODE_PRIVATE)
+                    val sharedPreferences =
+                        context.getSharedPreferences(SHARED_USER_KEY, Context.MODE_PRIVATE)
                     val edit = sharedPreferences.edit()
                     edit.putInt("moduloI", pontosIniciais)
-                    edit.putInt("moduloII",  pontosIniciais)
-                    edit.putInt("moduloIII",  pontosIniciais)
-                    edit.putInt("moduloIV",  pontosIniciais)
+                    edit.putInt("moduloII", pontosIniciais)
+                    edit.putInt("moduloIII", pontosIniciais)
+                    edit.putInt("moduloIV", pontosIniciais)
                     edit.putInt("total", pontosIniciais)
                     edit.apply()
 

@@ -137,7 +137,7 @@ private fun Tela(viewModel: AuthViewModel = hiltViewModel()) {
 
                     Button(
                         onClick = {
-                            viewModel.login(email, senha)
+                            viewModel.login(email, senha, context)
                         },
                         Modifier
                             .padding(top = 60.dp)

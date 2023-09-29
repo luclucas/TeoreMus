@@ -17,10 +17,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,14 +25,21 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.gowtham.ratingbar.RatingBar
 import com.lulu.teoremus.R
 import com.lulu.teoremus.utils.SHARED_USER_KEY
+import com.lulu.teoremus.utils.await
 import com.lulu.teoremus.view.MainActivity
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class ResultadoQuiz : ComponentActivity() {
     private var categorias: ArrayList<String>? = null
     private var questoesErradas: ArrayList<String>? = null
+    private var rating = 0f
+    private lateinit var textoApresentacao: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val i = intent
@@ -54,51 +57,76 @@ class ResultadoQuiz : ComponentActivity() {
             questoesErradas =
                 @Suppress("Deprecation") i.getSerializableExtra("questoes_erradas") as ArrayList<String>
         }
+        getRating(questoesCorretas)
+        GlobalScope.launch {
+
+            atualizarPontos(this@ResultadoQuiz, modulo!!, rating.toInt())
+        }
+
         setContent {
-            Tela(questoesCorretas, categorias!!, questoesErradas!!, modulo!!)
+            Tela(questoesCorretas, categorias!!, questoesErradas!!, modulo!!, rating, textoApresentacao)
         }
     }
+
+    private fun getRating(questoesCorretas: Int){
+        when (questoesCorretas) {
+            in 0..2 -> {
+                rating = 0f
+                textoApresentacao = "É preciso estudar mais"
+            }
+
+            in 3..5 -> {
+                rating = 1f
+                textoApresentacao = "Pode melhorar"
+            }
+
+            in 6..8 -> {
+                rating = 2f
+                textoApresentacao = "Muito bem, não desista de ganhar os 3 pontos"
+            }
+
+            in 9..10 -> {
+                rating = 3f
+                textoApresentacao = "Parabéns, você conseguiu absorver bem o conteúdo"
+            }
+
+        }
+    }
+
 }
+
+private suspend fun atualizarPontos(context: Context, modulo: String, rating: Int) {
+
+    val preferences = context.getSharedPreferences(SHARED_USER_KEY, Context.MODE_PRIVATE)
+    val currentPoint = preferences.getInt(modulo, 0)
+    var total = preferences.getInt("total", 0)
+    val editor = preferences.edit()
+    if (currentPoint < rating) {
+        total += rating - currentPoint
+        val auth = FirebaseAuth.getInstance()
+        val userRef = auth.currentUser
+        val db = FirebaseFirestore.getInstance()
+        val dbRef = db.collection("Usuarios").document(userRef!!.uid).update(modulo, rating, "total", total)
+        Log.d("lulutag", "${dbRef.await()}")
+        editor.putInt("total", total)
+        editor.putInt(modulo, rating).apply()
+    }
+
+
+}
+
+
 
 @Composable
 private fun Tela(
     questoesCorretas: Int,
     categorias: ArrayList<String>,
     questoesErradas: ArrayList<String>,
-    modulo: String
+    modulo: String,
+    rating: Float,
+    textoApresentacao: String
 ) {
     val context = LocalContext.current
-    var rating by remember {
-        mutableStateOf(0f)
-    }
-
-
-    var textoApresentacao by remember {
-        mutableStateOf("")
-    }
-    when (questoesCorretas) {
-        in 0..2 -> {
-            rating = 0f
-            textoApresentacao = "É preciso estudar mais"
-        }
-
-        in 3..5 -> {
-            rating = 1f
-            textoApresentacao = "Pode melhorar"
-        }
-
-        in 6..8 -> {
-            rating = 2f
-            textoApresentacao = "Muito bem, não desista de ganhar os 3 pontos"
-        }
-
-        in 9..10 -> {
-            rating = 3f
-            textoApresentacao = "Parabéns, você conseguiu absorver bem o conteúdo"
-        }
-
-    }
-    atualizarPontos(context, modulo, rating.toInt())
 
     Column(
         Modifier
@@ -155,11 +183,3 @@ private fun Tela(
 
 }
 
-private fun atualizarPontos(context: Context, modulo: String, rating: Int) {
-    val preferences = context.getSharedPreferences(SHARED_USER_KEY, Context.MODE_PRIVATE)
-    val currentPoint = preferences.getInt(modulo, 0)
-    val editor = preferences.edit()
-    if (currentPoint < rating) {
-        editor.putInt(modulo, rating).apply()
-    }
-}
