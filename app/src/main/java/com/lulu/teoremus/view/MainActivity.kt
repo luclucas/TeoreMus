@@ -32,6 +32,7 @@ import com.lulu.teoremus.view.moduloi.ModuloI
 import com.lulu.teoremus.view.moduloii.ModuloII
 import com.lulu.teoremus.view.moduloiii.ModuloIII
 import com.lulu.teoremus.view.moduloiv.ModuloIV
+import com.lulu.teoremus.view.ranking.RankingScreen
 
 
 var listaImagens = listOf<Int>(
@@ -82,6 +83,8 @@ private fun Tela(viewModel: MainActivityViewModel, list: MutableList<Int>) {
             CardModulo(imagem = listaImagens[i], titulo = listaNomes[i], listaTelas[i], list[i])
         }
 
+        CardRanking(imagem = R.drawable.hanking, titulo = "Placar")
+
     }
 }
 
@@ -124,6 +127,39 @@ fun CardModulo(imagem: Int, titulo: String, tela: Class<out ComponentActivity>, 
                     onRatingChanged = {},
                     modifier = Modifier.padding(top = 5.dp)
                 )
+            }
+        }
+    }
+}
+
+
+@Composable
+fun CardRanking(imagem: Int, titulo: String) {
+    val context = LocalContext.current
+    Card(
+        Modifier
+            .padding(top = 20.dp, start = 20.dp, end = 20.dp)
+            .fillMaxWidth()
+            .clickable {
+                context.startActivity(Intent(context, RankingScreen::class.java))
+            }, backgroundColor = colorResource(id = R.color.card_tela_principal)
+    ) {
+
+        Row(modifier = Modifier.padding(10.dp), verticalAlignment = Alignment.CenterVertically) {
+
+            Image(
+                painter = painterResource(id = imagem),
+                contentDescription = "Imagem módulo",
+                Modifier.size(80.dp)
+            )
+
+            Column(
+                Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+
+                Text(text = titulo, color = Color.Yellow, fontSize = 30.sp)
+
             }
         }
     }

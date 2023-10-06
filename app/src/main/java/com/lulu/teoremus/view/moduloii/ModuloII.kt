@@ -1,12 +1,15 @@
 package com.lulu.teoremus.view.moduloii
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -14,7 +17,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,6 +30,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lulu.teoremus.R
+import com.lulu.teoremus.fontes.Typography
 import com.lulu.teoremus.utils.MODULO_II
 import com.lulu.teoremus.view.moduloii.escalas.Escalas
 import com.lulu.teoremus.view.moduloii.graus.Graus
@@ -55,6 +62,9 @@ class ModuloII : ComponentActivity() {
 
 @Composable
 private fun CriarBotoes() {
+
+    val context = LocalContext.current as Activity
+
     Column(
         Modifier
             .padding(20.dp)
@@ -62,6 +72,27 @@ private fun CriarBotoes() {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        Row(Modifier.padding(10.dp).fillMaxWidth().fillMaxHeight(0.1f), verticalAlignment = Alignment.CenterVertically) {
+            Icon(
+                imageVector = Icons.Default.ArrowBack,
+
+                contentDescription = "",
+                tint = colorResource(
+                    id = R.color.card_tela_principal
+                ),
+                modifier = Modifier.padding(end = 20.dp).size(40.dp).clickable {
+                    context.finish()
+                }
+            )
+            androidx.compose.material3.Text(
+                text = "Módulo II",
+                style = Typography.h1,
+                textAlign = TextAlign.Center,
+                color = colorResource(id = R.color.card_tela_principal)
+            )
+        }
+
             Row() {
                 BotoesAula(nome = listaNomes[0], 0)
                 BotoesAula(nome = listaNomes[1], 1)
