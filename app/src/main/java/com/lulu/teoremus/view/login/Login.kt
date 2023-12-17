@@ -173,7 +173,7 @@ private fun Tela(viewModel: AuthViewModel = hiltViewModel()) {
         loginFlow.value.let {
             when (it) {
                 is Resource.Failure -> {
-                    Toast.makeText(context, "Erro ao fazer login", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(context, "Erro ao fazer login", Toast.LENGTH_SHORT).show()
                 }
 
                 Resource.Loading -> {

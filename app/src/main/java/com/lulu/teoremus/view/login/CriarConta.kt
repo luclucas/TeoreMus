@@ -52,7 +52,7 @@ import com.lulu.teoremus.view.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CriarConta : ComponentActivity() {
+class  CriarConta : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -154,7 +154,11 @@ private fun Tela(viewModel: AuthViewModel = hiltViewModel()) {
 
                Button(
                     onClick = {
-                        viewModel.criarConta(nome,email, senha, context)
+                        if(email == confirmarEmail && email.isNotEmpty() && senha == confirmarSenha && senha.isNotEmpty()) {
+                            viewModel.criarConta(nome, email, senha, context)
+                        } else{
+                            Toast.makeText(context, "Preencha os campos corretamente", Toast.LENGTH_SHORT).show()
+                        }
                     },
                    Modifier
                        .padding(top = 40.dp)

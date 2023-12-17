@@ -46,7 +46,7 @@ class TelaInicial : ComponentActivity() {
 
 
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
-       // viewModel.logout()
+        viewModel.logout()
         GlobalScope.launch {
             checkUser(viewModel, this@TelaInicial)
         }

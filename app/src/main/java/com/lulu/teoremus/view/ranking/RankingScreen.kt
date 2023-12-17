@@ -2,8 +2,6 @@ package com.lulu.teoremus.view.ranking
 
 import android.app.Activity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -24,9 +22,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -37,14 +32,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
-import com.google.firebase.firestore.FirebaseFirestore
 import com.lulu.teoremus.R
 import com.lulu.teoremus.fontes.Typography
 import com.lulu.teoremus.model.User
-import com.lulu.teoremus.utils.Titulo
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class RankingScreen : ComponentActivity() {
 
@@ -56,34 +48,39 @@ class RankingScreen : ComponentActivity() {
 
         viewModel = ViewModelProvider(this)[RankingViewModel::class.java]
 
-        GlobalScope.launch {
-            isOk = viewModel.getUsers()
-            Log.d("lulutag", isOk.toString())
-        }
-
+        viewModel.getUsers()
 
 
         setContent {
-            var userList = remember { mutableStateListOf<User?>() }
-            val db = FirebaseFirestore.getInstance()
-            db.collection("Usuarios").get().addOnSuccessListener {
-                if (!it.isEmpty) {
-                    val list = it.documents
-                    list.forEach {
-                        val user: User? = it.toObject(User::class.java)
-                        userList.add(user)
-                    }
-                } else {
-                    Toast.makeText(this, "Sem dados", Toast.LENGTH_SHORT).show()
-                }
-            }.addOnFailureListener {
-                Toast.makeText(
-                    this,
-                    "Fail to get the data.",
-                    Toast.LENGTH_SHORT
-                ).show()
+//            var userList = remember { mutableStateListOf<User?>() }
+//            val db = FirebaseFirestore.getInstance()
+//            db.collection("Usuarios").get().addOnSuccessListener {
+//                if (!it.isEmpty) {
+//                    val list = it.documents
+//                    list.forEach {
+//                        val user: User? = it.toObject(User::class.java)
+//                        userList.add(user)
+//                    }
+//                } else {
+//                    Toast.makeText(this, "Sem dados", Toast.LENGTH_SHORT).show()
+//                }
+//            }.addOnFailureListener {
+//                Toast.makeText(
+//                    this,
+//                    "Fail to get the data.",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//            Tela(userList)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.usersList.observe(this){
+            setContent{
+                Tela(userList = viewModel.usersList.value!!)
             }
-            Tela(userList)
         }
     }
 
@@ -91,7 +88,7 @@ class RankingScreen : ComponentActivity() {
 
 
 @Composable
-private fun Tela(userList: SnapshotStateList<User?>) {
+private fun Tela(userList: List<User>) {
     val context = LocalContext.current as Activity
 
     if (!userList.isNullOrEmpty()) {
@@ -104,7 +101,11 @@ private fun Tela(userList: SnapshotStateList<User?>) {
         ) {
 
 
-        Row(Modifier.padding(10.dp).fillMaxWidth().fillMaxHeight(0.1f), verticalAlignment = Alignment.CenterVertically) {
+        Row(
+            Modifier
+                .padding(10.dp)
+                .fillMaxWidth()
+                .fillMaxHeight(0.1f), verticalAlignment = Alignment.CenterVertically) {
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
 
@@ -112,9 +113,12 @@ private fun Tela(userList: SnapshotStateList<User?>) {
                     tint = colorResource(
                         id = R.color.card_tela_principal
                     ),
-                    modifier = Modifier.padding(end = 20.dp).size(40.dp).clickable {
-                        context.finish()
-                    }
+                    modifier = Modifier
+                        .padding(end = 20.dp)
+                        .size(40.dp)
+                        .clickable {
+                            context.finish()
+                        }
                 )
                 Text(
                     text = "Placar",
@@ -129,7 +133,7 @@ private fun Tela(userList: SnapshotStateList<User?>) {
                 itemsIndexed(userList) { index, item ->
                     Card(
                         Modifier
-                            .padding(horizontal = 30.dp, vertical = 20.dp)
+                            .padding(horizontal = 10.dp, vertical = 20.dp)
                             .fillMaxWidth()
                             .align(CenterHorizontally),
                         backgroundColor = colorResource(id = R.color.cor_botoes_modulo)
@@ -139,7 +143,7 @@ private fun Tela(userList: SnapshotStateList<User?>) {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "$index",
+                                text = "${index + 1}",
                                 Modifier.padding(
                                     top = 20.dp,
                                     bottom = 20.dp,
@@ -158,7 +162,7 @@ private fun Tela(userList: SnapshotStateList<User?>) {
                                     end = 10.dp
                                 ),
                                 color = Color.White,
-                                fontSize = 30.sp
+                                fontSize = 25.sp
                             )
                             Row(
                                 Modifier.fillMaxWidth(),

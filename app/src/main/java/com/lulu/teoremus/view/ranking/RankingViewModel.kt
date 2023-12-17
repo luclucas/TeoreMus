@@ -10,7 +10,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.lulu.teoremus.model.User
 
 class RankingViewModel: ViewModel() {
-    val usersList = mutableListOf<User>()
+    val usersList = MutableLiveData<List<User>>()
     val isOk = MutableLiveData(false)
 
 //    init {
@@ -18,18 +18,23 @@ class RankingViewModel: ViewModel() {
 //    }
 
 
-    suspend fun getUsers(): Boolean{
+     fun getUsers(): Boolean{
         val db = FirebaseFirestore.getInstance()
 
     db.collection("Usuarios").orderBy("total", Query.Direction.DESCENDING).get().addOnSuccessListener {
+            val list = mutableListOf<User>()
+            Log.d("lulutag", "${it.documents}")
             for (document in it){
+
                 val user = document.toObject<User>()
-                usersList.add(user)
+                list.add(user)
 
                 Log.d("lulutag", user.toString())
                 Log.d("lulutag", document.data.values.toString())
 
             }
+        usersList.value = list
+        Log.d("lulutag", "userlist = $usersList")
         isOk.value = true
         }
         return isOk.value!!
